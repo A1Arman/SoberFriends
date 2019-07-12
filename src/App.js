@@ -6,6 +6,7 @@ import Posts from './components/Posts/Posts';
 import AppNav from './components/AppNav/AppNav';
 import Profile from './components/Profile/Profile';
 import AddPost from './components/AddPost/AddPost';
+import Footer from './components/Footer/Footer';
 
 class App extends Component {
   constructor(props) {
@@ -24,7 +25,7 @@ class App extends Component {
     let mm = today.getMonth()+1;
     let yyyy = today.getFullYear();
     let startDate = `${mm}/${dd}/${yyyy}`;
-    
+
     const user = {
       first_name: e.target.first_name.value,
       last_name: e.target.last_name.value,
@@ -82,6 +83,9 @@ class App extends Component {
           <Route exact path='/posts' render={(props) => <Posts {...props} posts={this.state.posts} user={this.state.user} />} />
           <Route exact path='/profile' render={(props) => <Profile {...props} user={this.state.user}/>} />
           <Route exact path='/addPost' render={(props) => <AddPost {...props} handleSubmit={(event) => this.handleSubmit(event)} />} />
+        </>
+        <>
+          <Route exact path='/' component={Footer} />
         </>
       </div>
     );
