@@ -52,14 +52,3 @@ p + p {
     margin-top: 15px;
 }
   
-ul {
-    list-style: none;
-    display: flex;
-    justify-content: flex-start;
-}
-  
-li a {
-    text-decoration: none;
-    padding-left: 1rem;
-}
-

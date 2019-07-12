@@ -7,7 +7,7 @@ function LandingPage(props) {
         <>
             { props.isShowing ? <div onClick={props.closeModalHandler} className="back-drop"></div> : null }
             <main role="main">
-                {props.isShowing ? <SignUpForm className='modal' show={props.isShowing} close={props.closeModalHandler}></SignUpForm> : null}
+                {props.isShowing ? <SignUpForm className='modal' handleSubmit={props.handleUserSubmit} show={props.isShowing} close={props.closeModalHandler}></SignUpForm> : null}
                 <header role="banner">
                     <h1>SoberFriends</h1>
                     <h2>One Community One Mission</h2>

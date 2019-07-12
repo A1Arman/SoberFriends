@@ -6,6 +6,7 @@ function LandingNav(props) {
     return (
         <nav role="navigation">
             <ul>
+                <li className='title'><Link to='/'>SoberFriends</Link></li>
                 <li id='signup' onClick={props.openModalHandler}>Sign Up</li>
                 <li><Link to='/posts'>Demo</Link></li>
             </ul>

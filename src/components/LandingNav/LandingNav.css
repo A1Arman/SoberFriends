@@ -1,3 +1,22 @@
+ul {
+    list-style: none;
+    display: flex;
+    justify-content: flex-end;
+}
+
+li a {
+    text-decoration: none;
+    padding-right: 1rem;
+}
+
+.title {
+    margin-right: auto;
+}
+
+#signup {
+    padding-right: 1rem;
+}
+
 #signup:hover {
     cursor: pointer;
     color: purple;

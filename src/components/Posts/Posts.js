@@ -1,12 +1,25 @@
 import React from 'react';
 
 
-function Posts() {
+function Posts(props) {
     return (
         <main role="main">
             <header role="banner">
                 <h1>Posts</h1>
             </header>
+            {props.posts.map(post => {
+                return (
+                    <section className='card'>
+                        <header>
+                            <h3>{post.post_title}</h3>
+                            <p>{props.user.first_name} {props.user.last_name}</p>
+                            <p>{props.user.start_date}</p>
+                        </header>
+                        <p>{post.content}</p>
+                        <button>Comment</button>
+                    </section>
+                )
+            })}
             <section>
                 <header>
                     <h3>Feeling Down</h3>
@@ -15,7 +28,6 @@ function Posts() {
                 </header>
                 <p>Praesent sagittis a mi sit amet dictum. Donec orci nibh, dignissim in leo et, congue semper mauris. Donec elit lacus, dictum et placerat eget, rhoncus sodales erat. Curabitur sit amet placerat neque, a tempus mi. Suspendisse a tempus dolor. Nullam porttitor nisi sed justo dictum consequat. Etiam sed congue felis.</p>
                 <button>Comment</button>
-                <button>Show Support</button>
             </section>
             <section>
                 <header>
@@ -25,7 +37,6 @@ function Posts() {
                 </header>
                 <p>Praesent sagittis a mi sit amet dictum. Donec orci nibh, dignissim in leo et, congue semper mauris. Donec elit lacus, dictum et placerat eget, rhoncus sodales erat. Curabitur sit amet placerat neque, a tempus mi. Suspendisse a tempus dolor. Nullam porttitor nisi sed justo dictum consequat. Etiam sed congue felis.</p>
                 <button>Comment</button>
-                <button>Show Support</button>
             </section>
             <section>
                 <header>
@@ -35,7 +46,6 @@ function Posts() {
                 </header>
                 <p>Praesent sagittis a mi sit amet dictum. Donec orci nibh, dignissim in leo et, congue semper mauris. Donec elit lacus, dictum et placerat eget, rhoncus sodales erat. Curabitur sit amet placerat neque, a tempus mi. Suspendisse a tempus dolor. Nullam porttitor nisi sed justo dictum consequat. Etiam sed congue felis.</p>
                 <button>Comment</button>
-                <button>Show Support</button>
             </section>
         </main>
     )

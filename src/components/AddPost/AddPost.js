@@ -9,11 +9,11 @@ function AddPost(props) {
             </header>
             <section>
                 <form id="add-post-form" onSubmit={props.handleSubmit}>
-                <div className="form-section" className='grid-container'>
+                <div className="form-section grid-container">
                     <label htmlFor="post_title">Post title</label>
                     <input type="text" name="post_title" placeholder="Feeling Unstoppable" required />
                 </div>
-                <div className="form-section" className='grid-container'>
+                <div className="form-section grid-container">
                     <label htmlFor="post_content">Post Content<br/>
                         (Tell us about your current journey, how you are feeling, or just any tips you might have!)</label>
                     <textarea name="post_content" rows="15"   required></textarea>

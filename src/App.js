@@ -12,8 +12,33 @@ class App extends Component {
     super(props);
     this.state = {
         isShowing: false,
-        posts: []
+        posts: [],
+        user: null,
     }
+  }
+
+  handleUserSubmit = e => {
+    e.preventDefault();
+    let today = new Date();
+    let dd = today.getDate();
+    let mm = today.getMonth()+1;
+    let yyyy = today.getFullYear();
+    let startDate = `${mm}/${dd}/${yyyy}`;
+    
+    const user = {
+      first_name: e.target.first_name.value,
+      last_name: e.target.last_name.value,
+      email: e.target.email.value,
+      password: e.target.password.value,
+      money_spent: e.target.money_spent.value,
+      impact: e.target.impact.value,
+      start_date: startDate
+    }
+
+    this.setState({
+      user: user,
+      isShowing: false
+    });
   }
 
   handleSubmit = e => {
@@ -53,9 +78,9 @@ class App extends Component {
           <Route exact path='/addPost' component={AppNav} />
         </header>
         <>
-          <Route exact path='/' render={(props) => <LandingPage {...props} closeModalHandler={this.closeModalHandler} isShowing={this.state.isShowing}/>} />
-          <Route exact path='/posts' component={Posts} />
-          <Route exact path='/profile' component={Profile} />
+          <Route exact path='/' render={(props) => <LandingPage {...props} closeModalHandler={this.closeModalHandler} isShowing={this.state.isShowing} handleUserSubmit={(event) => this.handleUserSubmit(event)}/>} />
+          <Route exact path='/posts' render={(props) => <Posts {...props} posts={this.state.posts} user={this.state.user} />} />
+          <Route exact path='/profile' render={(props) => <Profile {...props} user={this.state.user}/>} />
           <Route exact path='/addPost' render={(props) => <AddPost {...props} handleSubmit={(event) => this.handleSubmit(event)} />} />
         </>
       </div>
