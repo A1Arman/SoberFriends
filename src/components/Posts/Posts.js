@@ -1,8 +1,53 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import config from '../../config';
+import TokenService from '../../services/token-service';
 import Comment from '../Comment/Comment';
+import { async } from 'q';
 
+const {API_BASE_URL} = config;
+
+function useMergeState(initialState) {
+    const [state, setState] = useState(initialState);
+    const setMergedState = newState => 
+        setState(prevState => Object.assign({}, prevState, newState)
+    );
+    return [state, setMergedState];
+}
 
 function Posts(props) {
+    const [postsRequest, setPosts] = useMergeState({
+        posts: [],
+        user: null,
+    });
+
+    async function fetchPosts() {
+        const options = {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `bearer ${TokenService.getAuthToken()}`
+            }
+        }
+        try {
+            const postResponse = await fetch(`${API_BASE_URL}/posts`, options);
+            const userResponse = await fetch(`${API_BASE_URL}/users/user`, options);
+            const postData = await postResponse.json();
+            const userData = await userResponse.json();
+            setPosts({
+                posts: postData,
+                user: userData
+            })
+        } catch (err) {
+            throw new Error(err)
+        }
+    }
+
+    useEffect(() => {
+        fetchPosts();
+    }, []);
+
+    const { posts, user } = postsRequest; 
+
     return (
         <>
         { props.isShowing ? <div onClick={props.closeModalHandler} className="back-drop"></div> : null }
@@ -10,47 +55,19 @@ function Posts(props) {
             <header role="banner">
                 <h1>Posts</h1>
             </header>
-            {props.posts.map(post => {
+            {posts.map(post => {
                 return (
-                    <section className='card'>
+                    <section className='card' key={post.id}>
                         <header>
                             <h3>{post.post_title}</h3>
-                            <p>{props.user.first_name} {props.user.last_name}</p>
-                            <p>{props.user.start_date}</p>
+                            <p>{user.first_name} {user.last_name}</p>
+                            <p>{user.start_date}</p>
                         </header>
-                        <p>{post.content}</p>
+                        <p>{post.post_content}</p>
                         <button onClick={props.openModalHandler}>Comment</button>
                     </section>
                 )
             })}
-            <section>
-                <header>
-                    <h3>Feeling Down</h3>
-                    <p>John Doe</p>
-                    <p>07.08.2019</p>
-                </header>
-                <p>Praesent sagittis a mi sit amet dictum. Donec orci nibh, dignissim in leo et, congue semper mauris. Donec elit lacus, dictum et placerat eget, rhoncus sodales erat. Curabitur sit amet placerat neque, a tempus mi. Suspendisse a tempus dolor. Nullam porttitor nisi sed justo dictum consequat. Etiam sed congue felis.</p>
-                <button onClick={props.openModalHandler}>Comment</button>
-            </section>
-            <section>
-            {props.isShowing ? <Comment className='modal' handleSubmit={props.handleUserSubmit} show={props.isShowing} close={props.closeModalHandler} /> : null}
-                <header>
-                    <h3>1 month sober!!!</h3>
-                    <p>Jane Smith</p>
-                    <p>01.27.2017</p>
-                </header>
-                <p>Praesent sagittis a mi sit amet dictum. Donec orci nibh, dignissim in leo et, congue semper mauris. Donec elit lacus, dictum et placerat eget, rhoncus sodales erat. Curabitur sit amet placerat neque, a tempus mi. Suspendisse a tempus dolor. Nullam porttitor nisi sed justo dictum consequat. Etiam sed congue felis.</p>
-                <button onClick={props.openModalHandler}>Comment</button>
-            </section>
-            <section>
-                <header>
-                    <h2>Might have a relaspe</h2>
-                    <p>Susy Shoehorn</p>
-                    <p>01.26.2017</p>
-                </header>
-                <p>Praesent sagittis a mi sit amet dictum. Donec orci nibh, dignissim in leo et, congue semper mauris. Donec elit lacus, dictum et placerat eget, rhoncus sodales erat. Curabitur sit amet placerat neque, a tempus mi. Suspendisse a tempus dolor. Nullam porttitor nisi sed justo dictum consequat. Etiam sed congue felis.</p>
-                <button onClick={props.openModalHandler}>Comment</button>
-            </section>
         </main>
         </>
     )
