@@ -22,5 +22,4 @@ function LandingPage(props) {
         </>
     )
 }
-
 export default LandingPage;
