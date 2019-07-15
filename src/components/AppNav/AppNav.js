@@ -6,7 +6,7 @@ import './AppNav.css';
 function AppNav(props) {
     return (
         <>
-        <Menu role='Navigation'> 
+        <Menu role='navigation'> 
             <Link to='/posts' className='menu-item'>Home</Link>
             <Link to='/addPost' className='menu-item'>Create a Post</Link>
             <Link to='/profile' className='menu-item'>Profile</Link>

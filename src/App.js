@@ -19,10 +19,13 @@ class App extends Component {
     super(props);
     this.state = {
         isShowing: false,
+        isShowingUpdate: false,
         posts: [],
         user: null,
         logInError: null,
         loggedIn: false,
+        myPost: [],
+        postId: null,
     }
   }
 
@@ -78,6 +81,35 @@ class App extends Component {
       })
   }
 
+  handleUpdateSubmit = (e, postId) => {
+    console.log('Im running')
+    e.preventDefault();
+    const post = {
+      post_title: e.target.post_title.value,
+      post_content: e.target.post_content.value
+    }
+
+    const options = {
+      method: 'PATCH',
+      body: JSON.stringify(post),
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization':  `bearer ${TokenService.getAuthToken()}`
+      }
+    }
+
+    fetch(`${API_BASE_URL}/posts/${postId}`, options)
+      .then(res => {
+        if (res.ok) {
+          window.location.href='/posts'
+        } else {
+          return res.json().then(error => {
+            throw new Error(error)
+          })
+        }
+      })
+  }
+
   handleSubmit = e => {
     e.preventDefault();
     const post = {
@@ -116,7 +148,6 @@ class App extends Component {
   handleLogin = e => {
     e.preventDefault();
     const { email, password } = e.target
-    console.log('run')
     AuthApiService.postLogin({
       email: email.value,
       password: password.value
@@ -130,6 +161,31 @@ class App extends Component {
       })
       .catch(err => {
         this.setState({logInError: err})
+      })
+  }
+
+  handleDeletePost = postId => {
+    fetch(`${API_BASE_URL}/posts/${postId}`, {
+      method: "DELETE",
+      headers: {
+        'Authorization': `bearer ${TokenService.getAuthToken()}`
+      } 
+    })
+      .then(res => {
+        if (!res.ok) {
+          return res.json().then(error => {
+            throw new Error(error);
+          })
+        }
+      })
+      .then(() => {
+        this.setState({
+          myPost: this.state.myPost.filter(post => post.id !== postId),
+          posts: this.state.posts.filter(post => post.id !== postId)
+        });
+      })
+      .catch(error => {
+        throw new Error(error);
       })
   }
 
@@ -151,6 +207,19 @@ class App extends Component {
       });
   }
 
+  openModalUpdateHandler = (postId) => {
+    this.setState({
+        isShowingUpdate: true,
+        postId: postId
+    });
+  }
+
+  closeModalUpdateHandler = () => {
+    this.setState({
+        isShowingUpdate: false
+    });
+}
+
   render() {
     return (
       <div className='App'>
@@ -164,7 +233,7 @@ class App extends Component {
         <>
           <Route exact path='/' render={(props) => <LandingPage {...props} closeModalHandler={this.closeModalHandler} isShowing={this.state.isShowing} handleUserSubmit={(event) => this.handleUserSubmit(event)}/>} isLoggedIn={this.state.loggedIn} />
           <Route exact path='/posts' render={(props) => <Posts {...props} posts={this.state.posts} closeModalHandler={this.closeModalHandler} user={this.state.user}  openModalHandler={this.openModalHandler} isShowing={this.state.isShowing} handleCommentSubmit={(event) => this.handleCommentSubmit(event)}/>} />
-          <Route exact path='/profile' render={(props) => <Profile {...props} user={this.state.user}/>} />
+          <Route exact path='/profile' render={(props) => <Profile {...props} user={this.state.user} handleDeletePost={(postId) => this.handleDeletePost(postId)} postId={this.state.postId} closeModalUpdateHandler={this.closeModalUpdateHandler} openModalUpdateHandler={(postId) => this.openModalUpdateHandler(postId)} isShowingUpdate={this.state.isShowingUpdate} handleUpdateSubmit={(event) => this.handleUpdateSubmit(event, this.state.postId)}/>}/>
           <Route exact path='/addPost' render={(props) => <AddPost {...props} handleSubmit={(event) => this.handleSubmit(event)} />} />
           <Route exact path='/login' render={(props) => <LoginForm {...props} handleLogin={(event) => this.handleLogin(event)} />} />
         </>
