@@ -22,17 +22,16 @@ class App extends Component {
         posts: [],
         user: null,
         logInError: null,
-        loggedIn: false
+        loggedIn: false,
     }
+  }
+
+  handleLogOut = () => {
+    TokenService.clearAuthToken();
   }
 
   handleUserSubmit = e => {
     e.preventDefault();
-    let today = new Date();
-    let dd = today.getDate();
-    let mm = today.getMonth()+1;
-    let yyyy = today.getFullYear();
-    let startDate = `${mm}/${dd}/${yyyy}`;
 
     const user = {
       first_name: e.target.first_name.value,
@@ -40,14 +39,43 @@ class App extends Component {
       email: e.target.email.value,
       password: e.target.password.value,
       money_spent: e.target.money_spent.value,
-      impact: e.target.impact.value,
-      start_date: startDate
+      impact: e.target.impact.value
     }
 
     this.setState({
       user: user,
       isShowing: false
     });
+  }
+
+  handleCommentSubmit = e => {
+    e.preventDefault();
+    const comment = {
+      comment: e.target.comment.value
+    }
+
+    const options = {
+      method: 'POST',
+      body: JSON.stringify(comment),
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `bearer ${TokenService.getAuthToken()}`
+      }
+    }
+
+    fetch(`${API_BASE_URL}/comments`, options)
+      .then(res => {
+        if (res.ok) {
+          return res.json();
+        } else {
+          return res.json().then(err => {throw new Error(err)})
+        }
+      })
+      .then(comment => {
+        const form = document.getElementById('comment-form')
+        form.reset();
+        this.setState({isShowing: false})
+      })
   }
 
   handleSubmit = e => {
@@ -127,8 +155,8 @@ class App extends Component {
     return (
       <div className='App'>
         <header>
-          <Route exact path='/' render={(props => <LandingNav {...props} openModalHandler={this.openModalHandler} isShowing={this.state.isShowing} closeModalHandler={this.closeModalHandler}/>)} />
-          <Route exact path='/posts' component={AppNav} />
+          <Route exact path='/' render={(props) => <LandingNav {...props} openModalHandler={this.openModalHandler} isShowing={this.state.isShowing} closeModalHandler={this.closeModalHandler}/>} />
+          <Route exact path='/posts' render={(props) => <AppNav {...props} handleLogout={this.handleLogOut} />} />
           <Route exact path='/profile' component={AppNav} />
           <Route exact path='/addPost' component={AppNav} />
           <Route exact path='/login' component={LandingNav} />

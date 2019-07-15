@@ -1,17 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { slide as Menu } from 'react-burger-menu';
 import './AppNav.css';
 
-function AppNav() {
+function AppNav(props) {
     return (
-        <nav role="navigation">
-            <ul>
-                <li className='title'><Link to='/'>SoberFriends</Link></li>   
-                <li><Link to='/posts'>Home</Link></li>
-                <li><Link to='/addPost'>Create a Post</Link></li>
-                <li><Link to='/profile'>Profile</Link></li>
-            </ul>
-        </nav>
+        <>
+        <Menu role='Navigation'> 
+            <Link to='/posts' className='menu-item'>Home</Link>
+            <Link to='/addPost' className='menu-item'>Create a Post</Link>
+            <Link to='/profile' className='menu-item'>Profile</Link>
+            <Link to='/' onClick={props.handleLogout}>Log Out</Link>
+        </Menu>
+        </>
     )
 }
 

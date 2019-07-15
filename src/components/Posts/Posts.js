@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import moment from 'moment';
 import config from '../../config';
 import TokenService from '../../services/token-service';
 import Comment from '../Comment/Comment';
-import { async } from 'q';
 
 const {API_BASE_URL} = config;
 
@@ -55,13 +55,13 @@ function Posts(props) {
             <header role="banner">
                 <h1>Posts</h1>
             </header>
+            {props.isShowing ? <Comment className='modal' handleSubmit={props.handleCommentSubmit} show={props.isShowing} close={props.closeModalHandler} /> : null}
             {posts.map(post => {
                 return (
                     <section className='card' key={post.id}>
                         <header>
                             <h3>{post.post_title}</h3>
                             <p>{user.first_name} {user.last_name}</p>
-                            <p>{user.start_date}</p>
                         </header>
                         <p>{post.post_content}</p>
                         <button onClick={props.openModalHandler}>Comment</button>

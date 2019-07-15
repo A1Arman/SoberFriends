@@ -13,7 +13,7 @@ function Comment(props) {
                         <h3>Comment</h3>
                     </div>
                     <div className='modal-body'>
-                        <form className='comment-form' onSubmit={props.handleCommentSubmit}>
+                        <form className='comment-form' onSubmit={props.handleSubmit}>
                             <div className='grid-container'>
                                 <label htmlFor='comment'>Comment</label>
                                 <input placeholder='Show your support!' type='text' name='comment' id='comment' required/>
