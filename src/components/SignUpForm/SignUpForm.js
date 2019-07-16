@@ -39,7 +39,6 @@ class SignUpForm extends Component {
 
     handleUserSubmit = e => {
         e.preventDefault();
-        console.log('hi')
 
         const user = {
             first_name: this.state.first_name,
@@ -49,19 +48,24 @@ class SignUpForm extends Component {
             money_spent: this.state.money_spent,
             impact: this.state.impact
         }
-
+        console.log('running')
         fetch(`${API_BASE_URL}/users`, {
             method: 'POST',
             headers: {
-                'content-type': 'application/json'
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify(user)
         })
             .then(res => {
-                return res.json()
+                if (res.ok) {
+                    return res.json()
+                } else {
+                    throw new Error(res.json())
+                }
             })
             .then(user => {
-                const form = document.getElementById('signup_form');
+                console.log('ran')
+                const form = document.getElementById('signup-form');
                 form.reset();
                 window.location.href = '/login'
             })
@@ -271,7 +275,7 @@ class SignUpForm extends Component {
                         <h3>Your Freedom Starts Now</h3>
                     </div>
                     <div className='modal-body'>
-                        <form className='signup-form' onSubmit={(event) => this.handleUserSubmit(event)}>
+                        <form className='signup-form' id='signup-form' onSubmit={(event) => this.handleUserSubmit(event)}>
                             <div className='grid-container'>
                                 <label htmlFor='first_name'>First name</label>
                                 <input placeholder='First Name' type='text' name='first_name' id='first_name' onChange={e => this.updateFirstName(e.target.value)} required/>

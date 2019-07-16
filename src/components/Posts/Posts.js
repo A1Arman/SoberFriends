@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import moment from 'moment';
 import config from '../../config';
 import TokenService from '../../services/token-service';
 import Comment from '../Comment/Comment';
@@ -55,7 +54,7 @@ function Posts(props) {
             <header role="banner">
                 <h1>Posts</h1>
             </header>
-            {props.isShowing ? <Comment className='modal' handleSubmit={props.handleCommentSubmit} show={props.isShowing} close={props.closeModalHandler} /> : null}
+            {props.isShowing ? <Comment className='modal' postId={props.postId} postTitle={props.postTitle} handleSubmit={props.handleCommentSubmit} show={props.isShowing} close={props.closeModalHandler} /> : null}
             {posts.map(post => {
                 return (
                     <section className='card' key={post.id}>
@@ -64,7 +63,7 @@ function Posts(props) {
                             <p>{user.first_name} {user.last_name}</p>
                         </header>
                         <p>{post.post_content}</p>
-                        <button onClick={props.openModalHandler}>Comment</button>
+                        <button onClick={() => props.openModalHandler(post.id, post.post_title)}>Comment</button>
                     </section>
                 )
             })}

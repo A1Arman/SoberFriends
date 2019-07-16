@@ -26,6 +26,7 @@ class App extends Component {
         loggedIn: false,
         myPost: [],
         postId: null,
+        postTitle: null
     }
   }
 
@@ -33,28 +34,11 @@ class App extends Component {
     TokenService.clearAuthToken();
   }
 
-  handleUserSubmit = e => {
-    e.preventDefault();
-
-    const user = {
-      first_name: e.target.first_name.value,
-      last_name: e.target.last_name.value,
-      email: e.target.email.value,
-      password: e.target.password.value,
-      money_spent: e.target.money_spent.value,
-      impact: e.target.impact.value
-    }
-
-    this.setState({
-      user: user,
-      isShowing: false
-    });
-  }
-
   handleCommentSubmit = e => {
     e.preventDefault();
     const comment = {
-      comment: e.target.comment.value
+      comment: e.target.comment.value,
+      post_id: this.state.postId
     }
 
     const options = {
@@ -164,6 +148,27 @@ class App extends Component {
       })
   }
 
+  handleDeleteUser = () => {
+    fetch(`${API_BASE_URL}/users/user`, {
+      method: "DELETE",
+      headers: {
+        'Authorization': `bearer ${TokenService.getAuthToken()}`
+      }
+    })
+      .then(res => {
+        if (!res.ok) {
+          return res.json().then(error => {
+            throw new Error(error);
+          });
+        }
+      })
+      .then(() => {
+        this.setState({posts: this.state.posts.filter(post => post.owner !== this.state.user.id)})
+        TokenService.clearAuthToken()
+        window.location.href='/'
+      })
+  }
+
   handleDeletePost = postId => {
     fetch(`${API_BASE_URL}/posts/${postId}`, {
       method: "DELETE",
@@ -195,9 +200,14 @@ class App extends Component {
     })
   }
 
-  openModalHandler = () => {
+  openModalHandler = (id, title) => {
       this.setState({
+          postId: id,
+          postTitle: title
+      },  function() {
+        this.setState({
           isShowing: true
+        })
       });
   }
 
@@ -209,8 +219,11 @@ class App extends Component {
 
   openModalUpdateHandler = (postId) => {
     this.setState({
-        isShowingUpdate: true,
         postId: postId
+    }, function() {
+      this.setState({
+        isShowingUpdate: true
+      })
     });
   }
 
@@ -231,9 +244,9 @@ class App extends Component {
           <Route exact path='/login' component={LandingNav} />
         </header>
         <>
-          <Route exact path='/' render={(props) => <LandingPage {...props} closeModalHandler={this.closeModalHandler} isShowing={this.state.isShowing} handleUserSubmit={(event) => this.handleUserSubmit(event)}/>} isLoggedIn={this.state.loggedIn} />
-          <Route exact path='/posts' render={(props) => <Posts {...props} posts={this.state.posts} closeModalHandler={this.closeModalHandler} user={this.state.user}  openModalHandler={this.openModalHandler} isShowing={this.state.isShowing} handleCommentSubmit={(event) => this.handleCommentSubmit(event)}/>} />
-          <Route exact path='/profile' render={(props) => <Profile {...props} user={this.state.user} handleDeletePost={(postId) => this.handleDeletePost(postId)} postId={this.state.postId} closeModalUpdateHandler={this.closeModalUpdateHandler} openModalUpdateHandler={(postId) => this.openModalUpdateHandler(postId)} isShowingUpdate={this.state.isShowingUpdate} handleUpdateSubmit={(event) => this.handleUpdateSubmit(event, this.state.postId)}/>}/>
+          <Route exact path='/' render={(props) => <LandingPage {...props} closeModalHandler={this.closeModalHandler} isShowing={this.state.isShowing} isLoggedIn={this.state.loggedIn}/>}/>
+          <Route exact path='/posts' render={(props) => <Posts {...props} posts={this.state.posts} closeModalHandler={this.closeModalHandler} user={this.state.user}  openModalHandler={(id, title) => this.openModalHandler(id, title)} postTitle={this.state.postTitle} postId={this.state.postId} isShowing={this.state.isShowing} handleCommentSubmit={(event) => this.handleCommentSubmit(event)}/>} />
+          <Route exact path='/profile' render={(props) => <Profile {...props} user={this.state.user} handleDeletePost={(postId) => this.handleDeletePost(postId)} deleteAccount={this.handleDeleteUser} postId={this.state.postId} closeModalUpdateHandler={this.closeModalUpdateHandler} openModalUpdateHandler={(postId) => this.openModalUpdateHandler(postId)} isShowingUpdate={this.state.isShowingUpdate} handleUpdateSubmit={(event) => this.handleUpdateSubmit(event, this.state.postId)}/>}/>
           <Route exact path='/addPost' render={(props) => <AddPost {...props} handleSubmit={(event) => this.handleSubmit(event)} />} />
           <Route exact path='/login' render={(props) => <LoginForm {...props} handleLogin={(event) => this.handleLogin(event)} />} />
         </>

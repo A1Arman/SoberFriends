@@ -72,7 +72,7 @@ function Profile(props) {
                             <h4>Money Saved: ${currentDate.diff(moment(user.start_date), 'days') * user.money_spent}</h4>
                             <h4>How your life will improve once you beat your addiction!</h4>
                             <p>{user.impact}</p>
-                            <button>Delete Account</button>
+                            <button onClick={props.deleteAccount}>Delete Account</button>
                         </header>
                         
                     </section>
