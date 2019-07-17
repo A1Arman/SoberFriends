@@ -14,6 +14,7 @@ function LoginForm(props) {
                     <input type='password' name='password' id='password' required/>
                 </div>
                 <button className="btn-login" type='submit'>CONTINUE</button>
+                {props.logInError ? <p>Incorrect Email or Password</p> : null}
             </form>
         </section>
     )

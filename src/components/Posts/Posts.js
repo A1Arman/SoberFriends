@@ -68,7 +68,7 @@ function Posts(props) {
                                     <p>{user.first_name} {user.last_name}</p>
                                 </header>
                                 <p>{post.post_content}</p>
-                                <button onClick={() => props.openModalHandler(post.id, post.post_title)}>Comment</button>
+                                <button onClick={() => props.openModalHandler(post.id, post.post_title)}>Comments</button>
                             </section>
                         )
                     })}

@@ -48,7 +48,7 @@ class SignUpForm extends Component {
             money_spent: this.state.money_spent,
             impact: this.state.impact
         }
-        console.log('running')
+ 
         fetch(`${API_BASE_URL}/users`, {
             method: 'POST',
             headers: {

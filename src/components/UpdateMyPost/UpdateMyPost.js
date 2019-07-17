@@ -1,7 +1,6 @@
 import React from 'react';
 
 function UpdatePost(props) {
-    console.log(props)
     const post = props.posts.filter(post => post.id === props.postId)
     return (
         <section>
@@ -25,7 +24,7 @@ function UpdatePost(props) {
                     </div>
                     <div className="modal-footer">
                         <button className="btn-cancel" onClick={props.close}>CLOSE</button>
-                        <button className="btn-continue" type='submit'>CONTINUE</button>
+                        <button className="btn-continue" type='submit' onClick={props.validate}>CONTINUE</button>
                     </div>
                 </form>
             </div>

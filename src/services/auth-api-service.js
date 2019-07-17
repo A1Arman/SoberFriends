@@ -12,11 +12,7 @@ const AuthApiService = {
             body: JSON.stringify({email, password})
         })
             .then(res => {
-                if (res.ok) {
-                    return res.json()
-                } else {
-                    res.json().then(e => Promise.reject(e))
-                }
+                return res.json();
             })
     },
     postUser(user) {

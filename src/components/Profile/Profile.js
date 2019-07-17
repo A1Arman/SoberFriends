@@ -4,6 +4,8 @@ import TokenService from '../../services/token-service';
 import Loader from '../Loader/Loader';
 import config from '../../config';
 import UpdateMyPost from '../UpdateMyPost/UpdateMyPost';
+import DeleteMyAccount from '../DeleteMyAccount/DeleteMyAccount';
+import DeleteMyPost from '../DeleteMyPost/DeleteMyPost';
 
 const {API_BASE_URL} = config;
 
@@ -61,12 +63,14 @@ function Profile(props) {
     return (
         <>
             {props.isShowingUpdate ? <div onClick={props.closeModalUpdateHandler} className="back-drop"></div> : null }
+            {props.isShowingDelete ? <div onClick={props.closeModalDeleteHandler} className="back-drop"></div> : null }
+            {props.isShowingDeletePost ? <div onClick={props.closeModalDeletePostHandler} className="back-drop"></div> : null }
             {isLoading ? <Loader {...props} /> : (
                 <main role="main">
                     <header role="banner">
                         <h1>Profile</h1>
                     </header>
-                    {props.isShowingUpdate ? <UpdateMyPost className='modal' postId={props.postId} handleUpdateSubmit={props.handleUpdateSubmit} posts={myPost} show={props.isShowingUpdate} close={props.closeModalUpdateHandler}></UpdateMyPost> : null}
+                    {props.isShowingUpdate ? <UpdateMyPost className='modal' validate={props.validation} postId={props.postId} handleUpdateSubmit={props.handleUpdateSubmit} posts={myPost} show={props.isShowingUpdate} close={props.closeModalUpdateHandler}></UpdateMyPost> : null}
                     {!user ? <h2>Oops Something Went Wrong</h2>: (
                         <section>
                             <header>
@@ -76,11 +80,12 @@ function Profile(props) {
                                 <h4>Money Saved: ${currentDate.diff(moment(user.start_date), 'days') * user.money_spent}</h4>
                                 <h4>How your life will improve once you beat your addiction!</h4>
                                 <p>{user.impact}</p>
-                                <button onClick={props.deleteAccount}>Delete Account</button>
+                                <button onClick={props.openModalDeleteHandler}>Delete Account</button>
                             </header>
-                            
                         </section>
                     )}
+                    {props.isShowingDelete ? <DeleteMyAccount className='modal' handleDelete={props.deleteAccount} show={props.isShowingDelete} close={props.closeModalDeleteHandler}></DeleteMyAccount> : null}
+                    {props.isShowingDeletePost ? <DeleteMyPost className='modal' postId={props.postId} handleDelete={props.handleDeletePost} posts={myPost} show={props.isShowingDeletePost} close={props.closeModalDeletePostHandler}></DeleteMyPost> : null}
                     <section className='my-posts'>
                         <h3>My Posts</h3>
                         {!myPost ? <h2>Oops Something Went Wrong</h2> : myPost.map(post => {
@@ -88,7 +93,7 @@ function Profile(props) {
                                 <section key={post.id}>
                                     <h4>{post.post_title}</h4>
                                     <p>{post.post_content}</p>
-                                    <button className='deletePostBtn' onClick={() => {props.handleDeletePost(post.id); getUser()}}>Delete</button>
+                                    <button className='deletePostBtn' onClick={() => {props.openModalDeletePostHandler(post.id); getUser()}}>Delete</button>
                                     <button className='updatePostBtn' onClick={() => props.openModalUpdateHandler(post.id)}>Update</button>
                                 </section>
                             )

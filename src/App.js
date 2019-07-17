@@ -20,14 +20,18 @@ class App extends Component {
     this.state = {
         isShowing: false,
         isShowingUpdate: false,
+        isShowingDelete: false,
+        isShowingDeletePost: false,
         posts: [],
         user: null,
-        logInError: null,
+        logInError: false,
         loggedIn: false,
         myPost: [],
         postId: null,
         postTitle: null,
-        isLoading: false
+        isLoading: false,
+        postContentValid: false,
+        error: null,
     }
   }
 
@@ -82,7 +86,8 @@ class App extends Component {
       }
     }
 
-    fetch(`${API_BASE_URL}/posts/${postId}`, options)
+    if (this.state.postContentValid) {
+      fetch(`${API_BASE_URL}/posts/${postId}`, options)
       .then(res => {
         if (res.ok) {
           window.location.href='/posts'
@@ -92,6 +97,7 @@ class App extends Component {
           })
         }
       })
+    }
   }
 
   handleSubmit = e => {
@@ -110,7 +116,8 @@ class App extends Component {
       }
     }
 
-    fetch(`${API_BASE_URL}/posts`, options)
+    if (this.state.postContentValid) {
+      fetch(`${API_BASE_URL}/posts`, options)
       .then(res => {
         if (!res.ok) {
           return res.json().then(error => {
@@ -125,8 +132,9 @@ class App extends Component {
         window.location.href='/posts'
       })
       .catch(error => {
-        alert(`something went wrong: ${error.message}`)
+        throw new Error(error)
       })
+    } 
   }
 
   handleLogin = e => {
@@ -137,14 +145,21 @@ class App extends Component {
       password: password.value
     })
       .then(res => {
+        if (res.error) {
+          return this.setState({logInError: true})
+        } else {
+          return res;
+        }
+      })
+      .then(user => {
         email.value = ''
         password.value = ''
-        TokenService.saveAuthToken(res.authToken);
+        TokenService.saveAuthToken(user.authToken);
         this.setState({loggedIn: true});
         window.location.href = '/posts'
       })
       .catch(err => {
-        this.setState({logInError: err})
+        this.setState({error: err})
       })
   }
 
@@ -169,7 +184,9 @@ class App extends Component {
       })
   }
 
-  handleDeletePost = postId => {
+  handleDeletePost = () => {
+    const postId = this.state.postId
+
     fetch(`${API_BASE_URL}/posts/${postId}`, {
       method: "DELETE",
       headers: {
@@ -186,8 +203,10 @@ class App extends Component {
       .then(() => {
         this.setState({
           myPost: this.state.myPost.filter(post => post.id !== postId),
-          posts: this.state.posts.filter(post => post.id !== postId)
+          posts: this.state.posts.filter(post => post.id !== postId),
+          isShowingDeletePost: false
         });
+        window.location.href='/posts'
       })
       .catch(error => {
         throw new Error(error);
@@ -217,6 +236,28 @@ class App extends Component {
       });
   }
 
+  openModalDeleteHandler = () => {
+    this.setState({isShowingDelete: true})
+  }
+
+  closeModalDeleteHandler = () => {
+    this.setState({isShowingDelete: false})
+  }
+
+  openModalDeletePostHandler = (postId) => {
+    this.setState({
+        postId: postId
+    }, function() {
+      this.setState({
+        isShowingDeletePost: true
+      })
+    });
+  }
+
+  closeModalDeletePostHandler = () => {
+    this.setState({isShowingDeletePost: false})
+  }  
+
   openModalUpdateHandler = (postId) => {
     this.setState({
         postId: postId
@@ -233,6 +274,31 @@ class App extends Component {
     });
 }
 
+  trimfield = (str) => 
+  { 
+    return str.replace(/^\s+|\s+$/g,''); 
+  }
+
+  validate = () =>
+  {
+     var obj1 = document.getElementById('post_title');
+     var obj2 = document.getElementById('post_content');
+         if(this.trimfield(obj1.value) === '') 
+         {      
+            this.setState({postContentValid: false}) 
+            obj1.focus();
+         }
+         else if(this.trimfield(obj2.value) === '')
+         {     
+          this.setState({postContentValid: false})  
+          obj2.focus(); 
+        }
+        else {
+          this.setState({postContentValid: true})
+        }
+  }
+
+
   render() {
     return (
       <div className='App'>
@@ -244,11 +310,17 @@ class App extends Component {
           <Route exact path='/login' component={LandingNav} />
         </header>
         <>
-          <Route exact path='/' render={(props) => <LandingPage {...props} closeModalHandler={this.closeModalHandler} isShowing={this.state.isShowing} isLoggedIn={this.state.loggedIn}/>}/>
-          <Route exact path='/posts' render={(props) => <Posts {...props} posts={this.state.posts} closeModalHandler={this.closeModalHandler} user={this.state.user}  openModalHandler={(id, title) => this.openModalHandler(id, title)} postTitle={this.state.postTitle} postId={this.state.postId} isShowing={this.state.isShowing} handleCommentSubmit={(event) => this.handleCommentSubmit(event)}/>} />
-          <Route exact path='/profile' render={(props) => <Profile {...props} user={this.state.user} handleDeletePost={(postId) => this.handleDeletePost(postId)} deleteAccount={this.handleDeleteUser} postId={this.state.postId} closeModalUpdateHandler={this.closeModalUpdateHandler} openModalUpdateHandler={(postId) => this.openModalUpdateHandler(postId)} isShowingUpdate={this.state.isShowingUpdate} handleUpdateSubmit={(event) => this.handleUpdateSubmit(event, this.state.postId)}/>}/>
-          <Route exact path='/addPost' render={(props) => <AddPost {...props} handleSubmit={(event) => this.handleSubmit(event)} />} />
-          <Route exact path='/login' render={(props) => <LoginForm {...props} handleLogin={(event) => this.handleLogin(event)} />} />
+          <Route exact path='/' render={(props) => 
+              <LandingPage {...props} closeModalHandler={this.closeModalHandler} isShowing={this.state.isShowing} isLoggedIn={this.state.loggedIn}/>}/>
+          <Route exact path='/posts' render={(props) => 
+              <Posts {...props} posts={this.state.posts} closeModalHandler={this.closeModalHandler} user={this.state.user}  openModalHandler={(id, title) => this.openModalHandler(id, title)} postTitle={this.state.postTitle} postId={this.state.postId} isShowing={this.state.isShowing} handleCommentSubmit={(event) => this.handleCommentSubmit(event)}/>} />
+          <Route exact path='/profile' render={(props) => 
+              <Profile {...props} user={this.state.user} validation={this.validate} handleDeletePost={(postId) => this.handleDeletePost(postId)} deleteAccount={this.handleDeleteUser} postId={this.state.postId} closeModalUpdateHandler={this.closeModalUpdateHandler} isShowingDelete={this.state.isShowingDelete} openModalDeleteHandler={this.openModalDeleteHandler} closeModalDeleteHandler={this.closeModalDeleteHandler} 
+                openModalUpdateHandler={(postId) => this.openModalUpdateHandler(postId)} openModalDeletePostHandler={(postId) => this.openModalDeletePostHandler(postId)} closeModalDeletePostHandler={this.closeModalDeletePostHandler} isShowingDeletePost={this.state.isShowingDeletePost} isShowingUpdate={this.state.isShowingUpdate} handleUpdateSubmit={(event) => this.handleUpdateSubmit(event, this.state.postId)}/>}/>
+          <Route exact path='/addPost' render={(props) => 
+              <AddPost {...props} contentValid={this.state.postContentValid} handleValidation={this.validate} handleSubmit={(event) => this.handleSubmit(event)} />}/>
+          <Route exact path='/login' render={(props) => 
+              <LoginForm {...props} logInError={this.state.logInError} handleLogin={(event) => this.handleLogin(event)} />} />
         </>
         <>
           <Route exact path='/' component={Footer} />
