@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import config from '../../config';
 import moment from 'moment';
+import Loader from '../Loader/Loader';
 import TokenService from '../../services/token-service';
 import './Comment.css';
 
@@ -16,7 +17,8 @@ function useMergeState(initialState) {
 
 function Comment(props) {
     const [commentsRequest, setComments] = useMergeState({
-        comments: []
+        comments: [],
+        isLoading: true
     });
 
     async function fetchComments() {
@@ -31,7 +33,8 @@ function Comment(props) {
             const commentResponse = await fetch(`${API_BASE_URL}/comments/${props.postId}`, options);
             const commentsData = await commentResponse.json();
             setComments({
-                comments: commentsData
+                comments: commentsData,
+                isLoading: false
             })
         } catch (err) {
             throw new Error(err)
@@ -42,11 +45,11 @@ function Comment(props) {
         fetchComments();
     }, []);
 
-    const { comments } = commentsRequest;
-    console.log(comments)
+    const { comments, isLoading } = commentsRequest;
 
     return (
         <>
+        {isLoading ? <Loader {...props} /> : (
             <div className='modal-wrapper'
                     style={{
                         transform: props.show ? 'translateY(0vh)' : 'translateY(-100vh)',
@@ -79,6 +82,7 @@ function Comment(props) {
                         </main>
                     </div>
                 </div>
+            )}
         </>
     )
 }

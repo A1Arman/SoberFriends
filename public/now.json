@@ -1,0 +1,15 @@
+{
+    "version": 2,
+    "alias": "a1arman-soberfriends",
+    "name": "soberfriends",
+    "routes": [
+        {
+          "src": "^/static/(.*)",
+          "dest": "/static/$1"
+        },
+        {
+          "src": ".*",
+          "dest": "/index.html"
+        }
+    ]
+  }

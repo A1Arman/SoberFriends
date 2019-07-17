@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import moment from 'moment';
 import TokenService from '../../services/token-service';
+import Loader from '../Loader/Loader';
 import config from '../../config';
 import UpdateMyPost from '../UpdateMyPost/UpdateMyPost';
 
@@ -20,6 +21,7 @@ function Profile(props) {
     const [userRequest, setUser] = useMergeState({
         user: null,
         myPost: [],
+        isLoading: true,
     })
 
 
@@ -39,6 +41,7 @@ function Profile(props) {
             setUser({
                 user: userData,
                 myPost: postsData,
+                isLoading: false,
             })
         } catch (err) {
             throw new Error(err)
@@ -52,45 +55,47 @@ function Profile(props) {
     }, []);
 
 
-    const {user, myPost} = userRequest;
+    const {user, myPost, isLoading} = userRequest;
     let currentDate = moment();
 
     return (
         <>
             {props.isShowingUpdate ? <div onClick={props.closeModalUpdateHandler} className="back-drop"></div> : null }
-            <main role="main">
-                <header role="banner">
-                    <h1>Profile</h1>
-                </header>
-                {props.isShowingUpdate ? <UpdateMyPost className='modal' postId={props.postId} handleUpdateSubmit={props.handleUpdateSubmit} posts={myPost} show={props.isShowingUpdate} close={props.closeModalUpdateHandler}></UpdateMyPost> : null}
-                {!user ? <h2>Oops Something Went Wrong</h2>: (
-                    <section>
-                        <header>
-                            <h3>{user.first_name} {user.last_name}</h3>
-                            <p>{moment(user.start_date).format("MM-DD-YYYY")}</p>
-                            <p>Days Sober: {currentDate.diff(moment(user.start_date), 'days')}</p>
-                            <h4>Money Saved: ${currentDate.diff(moment(user.start_date), 'days') * user.money_spent}</h4>
-                            <h4>How your life will improve once you beat your addiction!</h4>
-                            <p>{user.impact}</p>
-                            <button onClick={props.deleteAccount}>Delete Account</button>
-                        </header>
-                        
-                    </section>
-                )}
-                <section className='my-posts'>
-                    <h3>My Posts</h3>
-                    {!myPost ? <h2>Oops Something Went Wrong</h2> : myPost.map(post => {
-                        return (
-                            <section key={post.id}>
-                                <h4>{post.post_title}</h4>
-                                <p>{post.post_content}</p>
-                                <button className='deletePostBtn' onClick={() => {props.handleDeletePost(post.id); getUser()}}>Delete</button>
-                                <button className='updatePostBtn' onClick={() => props.openModalUpdateHandler(post.id)}>Update</button>
-                            </section>
-                        )
-                    })} 
-                </section>  
-            </main>
+            {isLoading ? <Loader {...props} /> : (
+                <main role="main">
+                    <header role="banner">
+                        <h1>Profile</h1>
+                    </header>
+                    {props.isShowingUpdate ? <UpdateMyPost className='modal' postId={props.postId} handleUpdateSubmit={props.handleUpdateSubmit} posts={myPost} show={props.isShowingUpdate} close={props.closeModalUpdateHandler}></UpdateMyPost> : null}
+                    {!user ? <h2>Oops Something Went Wrong</h2>: (
+                        <section>
+                            <header>
+                                <h3>{user.first_name} {user.last_name}</h3>
+                                <p>{moment(user.start_date).format("MM-DD-YYYY")}</p>
+                                <p>Days Sober: {currentDate.diff(moment(user.start_date), 'days')}</p>
+                                <h4>Money Saved: ${currentDate.diff(moment(user.start_date), 'days') * user.money_spent}</h4>
+                                <h4>How your life will improve once you beat your addiction!</h4>
+                                <p>{user.impact}</p>
+                                <button onClick={props.deleteAccount}>Delete Account</button>
+                            </header>
+                            
+                        </section>
+                    )}
+                    <section className='my-posts'>
+                        <h3>My Posts</h3>
+                        {!myPost ? <h2>Oops Something Went Wrong</h2> : myPost.map(post => {
+                            return (
+                                <section key={post.id}>
+                                    <h4>{post.post_title}</h4>
+                                    <p>{post.post_content}</p>
+                                    <button className='deletePostBtn' onClick={() => {props.handleDeletePost(post.id); getUser()}}>Delete</button>
+                                    <button className='updatePostBtn' onClick={() => props.openModalUpdateHandler(post.id)}>Update</button>
+                                </section>
+                            )
+                        })} 
+                    </section>  
+                </main>
+            )}
         </>
     )
 }

@@ -26,7 +26,8 @@ class App extends Component {
         loggedIn: false,
         myPost: [],
         postId: null,
-        postTitle: null
+        postTitle: null,
+        isLoading: false
     }
   }
 
@@ -66,7 +67,6 @@ class App extends Component {
   }
 
   handleUpdateSubmit = (e, postId) => {
-    console.log('Im running')
     e.preventDefault();
     const post = {
       post_title: e.target.post_title.value,
