@@ -1,12 +1,12 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
-import LandingPage from './LandingPage';
+import Footer from '../Footer/Footer';
 
 
-describe(`LandingPage component`, () => {
+describe(`Footer component`, () => {
     it('renders without crashing', () => {
-        const wrapper = shallow(<LandingPage />);
+        const wrapper = shallow(<Footer />);
         expect(toJson(wrapper)).toMatchSnapshot();
     });
 });

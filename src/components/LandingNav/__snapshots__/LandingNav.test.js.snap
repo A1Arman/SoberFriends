@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LandingNav component renders without crashing 1`] = `
+<nav
+  role="navigation"
+>
+  <ul>
+    <li
+      className="title"
+    >
+      <Link
+        to="/"
+      >
+        SoberFriends
+      </Link>
+    </li>
+    <li
+      id="signup"
+    >
+      Sign Up
+    </li>
+    <li>
+      <Link
+        to="/login"
+      >
+        Posts
+      </Link>
+    </li>
+  </ul>
+</nav>
+`;

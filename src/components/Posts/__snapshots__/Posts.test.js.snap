@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LoginForm component renders without crashing 1`] = `
+<Fragment>
+  <Loader
+    posts={
+      Array [
+        Object {
+          "owner": 1,
+          "post_content": "I am having a terrible day! Nothing is going right and I feel like I am going to relapse.",
+          "post_title": "I might relapse!",
+        },
+        Object {
+          "owner": 1,
+          "post_content": "I have been sober for 3 years. What has helped me and my journey is support and keeping busy!",
+          "post_title": "Tips!",
+        },
+        Object {
+          "owner": 1,
+          "post_content": "I am loving quitting my addiction. I feel so much better!",
+          "post_title": "Feeling Good!",
+        },
+      ]
+    }
+  />
+</Fragment>
+`;

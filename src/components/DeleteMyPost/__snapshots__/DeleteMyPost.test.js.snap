@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DeleteMyPost component renders without crashing 1`] = `
+<Fragment>
+  <div
+    className="modal-wrapper"
+    style={
+      Object {
+        "opacity": "0",
+        "transform": "translateY(-100vh)",
+      }
+    }
+  >
+    <div
+      className="modal-header"
+    >
+      <h3>
+        Delete Post 
+        I might relapse!
+        ?
+      </h3>
+    </div>
+    <div
+      className="modal-body"
+    >
+      <p>
+        Post Deletions Cannot be Undone!
+      </p>
+    </div>
+    <div
+      className="modal-footer"
+    >
+      <button
+        className="btn-cancel"
+      >
+        CLOSE
+      </button>
+      <button
+        className="btn-continue"
+        type="button"
+      >
+        CONTINUE
+      </button>
+    </div>
+  </div>
+</Fragment>
+`;

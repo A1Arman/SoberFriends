@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Footer component renders without crashing 1`] = `
+<footer>
+  <h3>
+    Created by: 
+    <a
+      className="footer-item"
+      href="http://www.armanbhimani.com"
+    >
+      Arman Bhimani
+    </a>
+  </h3>
+  <h4>
+    Icons Created by: 
+    <a
+      className="footer-item"
+      href="https://fontawesome.com/"
+    >
+      Font Awesome
+    </a>
+  </h4>
+  <p>
+    Copyright @ 2019
+  </p>
+</footer>
+`;

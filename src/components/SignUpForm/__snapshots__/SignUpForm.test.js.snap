@@ -1,0 +1,202 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SignUpForm component renders without crashing 1`] = `
+<div>
+  <div
+    className="modal-wrapper"
+    style={
+      Object {
+        "opacity": "0",
+        "transform": "translateY(-100vh)",
+      }
+    }
+  >
+    <div
+      className="modal-header"
+    >
+      <h3>
+        Your Freedom Starts Now
+      </h3>
+    </div>
+    <div
+      className="modal-body"
+    >
+      <form
+        className="signup-form"
+        id="signup-form"
+        onSubmit={[Function]}
+      >
+        <div
+          className="grid-container"
+        >
+          <label
+            htmlFor="first_name"
+          >
+            First name
+          </label>
+          <input
+            id="first_name"
+            name="first_name"
+            onChange={[Function]}
+            placeholder="First Name"
+            required={true}
+            type="text"
+          />
+          <ValidationError
+            hasError={true}
+          />
+        </div>
+        <div
+          className="grid-container"
+        >
+          <label
+            htmlFor="last_name"
+          >
+            Last name
+          </label>
+          <input
+            id="last_name"
+            name="last_name"
+            onChange={[Function]}
+            placeholder="Last Name"
+            required={true}
+            type="text"
+          />
+          <ValidationError
+            hasError={true}
+          />
+        </div>
+        <div
+          className="grid-container"
+        >
+          <label
+            htmlFor="email"
+          >
+            Email
+          </label>
+          <input
+            id="email"
+            name="email"
+            onChange={[Function]}
+            required={true}
+            type="email"
+          />
+          <ValidationError
+            hasError={true}
+            message=""
+          />
+        </div>
+        <div
+          className="grid-container"
+        >
+          <label
+            htmlFor="password"
+          >
+            Password
+          </label>
+          <input
+            id="password"
+            minLength="8"
+            name="password"
+            onChange={[Function]}
+            required={true}
+            type="password"
+          />
+          <ValidationError
+            hasError={true}
+            message=""
+          />
+        </div>
+        <div
+          className="grid-container"
+        >
+          <label
+            htmlFor="confirm"
+          >
+            Confirm Password:
+          </label>
+          <input
+            id="confirm"
+            minLength="8"
+            name="confirm"
+            onChange={[Function]}
+            required={true}
+            type="password"
+          />
+          <ValidationError
+            hasError={true}
+          />
+        </div>
+        <div
+          className="grid-container"
+        >
+          <label
+            htmlFor="money_spent"
+          >
+            Money Spent(Daily)
+          </label>
+          <input
+            max="1,000,000,000"
+            min="0"
+            name="money_spent"
+            onChange={[Function]}
+            placeholder="Whole number"
+            required={true}
+            type="number"
+          />
+          <ValidationError
+            hasError={true}
+            message=""
+          />
+        </div>
+        <div
+          className="grid-container"
+        >
+          <label
+            htmlFor="impact"
+          >
+            How will your life change?
+          </label>
+          <textarea
+            name="impact"
+            onChange={[Function]}
+            placeholder="When you beat your addiction how will it impact your life?"
+            required={true}
+            row="15"
+          />
+          <ValidationError
+            hasError={true}
+            message=""
+          />
+        </div>
+        <div>
+          <p>
+            Have an Account? 
+            <Link
+              to="/login"
+            >
+              Login Here
+            </Link>
+          </p>
+        </div>
+        <div
+          className="modal-footer"
+        >
+          <button
+            className="btn-cancel"
+          >
+            CLOSE
+          </button>
+          <button
+            className="btn-continue"
+            disabled={true}
+            type="submit"
+          >
+            CONTINUE
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+`;
