@@ -272,27 +272,27 @@ class SignUpForm extends Component {
                         opacity: this.props.show ? '1' : '0'
                     }}>
                     <div className='modal-header'>
-                        <h3>Your Freedom Starts Now</h3>
+                        <h3 className='signup-title'>Your Freedom Starts Now</h3>
                     </div>
                     <div className='modal-body'>
                         <form className='signup-form' id='signup-form' onSubmit={(event) => this.handleUserSubmit(event)}>
                             <div className='grid-container'>
-                                <label htmlFor='first_name'>First name</label>
+                                <label htmlFor='first_name'>First name:</label>
                                 <input placeholder='First Name' type='text' name='first_name' id='first_name' onChange={e => this.updateFirstName(e.target.value)} required/>
                                 <ValidationError hasError={!this.state.firstNameValid} message={this.state.validationMessages.name}/>  
                             </div>
                             <div className='grid-container'>
-                                <label htmlFor='last_name'>Last name</label>
+                                <label htmlFor='last_name'>Last name:</label>
                                 <input type='text' name='last_name' id='last_name' placeholder='Last Name' onChange={e => this.updateLastName(e.target.value)} required/>
                                 <ValidationError hasError={!this.state.lastNameValid} message={this.state.validationMessages.name}/>
                             </div>
                             <div className='grid-container'>
-                                <label htmlFor='email'>Email</label>
+                                <label htmlFor='email'>Email:</label>
                                 <input type='email' name='email' id='email' onChange={e => this.updateEmail(e.target.value)} required/>
                                 <ValidationError hasError={!this.state.emailValid} message={this.state.validationMessages.email} />
                             </div>
                             <div className='grid-container'>
-                                <label htmlFor='password'>Password</label>
+                                <label htmlFor='password'>Password:</label>
                                 <input type='password' name='password' minLength='8' id='password'  onChange={e => this.updatePassword(e.target.value)} required/>
                                 <ValidationError hasError={!this.state.passwordValid} message={this.state.validationMessages.password}/>
                             </div>
@@ -302,13 +302,13 @@ class SignUpForm extends Component {
                                 <ValidationError hasError={!this.state.passwordMatch} message={this.state.validationMessages.repeatPassword}/>
                             </div>
                             <div className='grid-container'>
-                                <label htmlFor='money_spent'>Money Spent(Daily)</label>
+                                <label htmlFor='money_spent'>Money Spent(Daily):</label>
                                 <input type='number' name='money_spent' min='0' max='1,000,000,000' placeholder='Whole number' onChange={e => this.updateMoneySpent(e.target.value)} required/>
                                 <ValidationError hasError={!this.state.money_spentValid} message={this.state.validationMessages.money_spent}/>  
                             </div>
                             <div className='grid-container'>
                                 <label htmlFor="impact">How will your life change?</label>
-                                <textarea name="impact" row="15" placeholder="When you beat your addiction how will it impact your life?" onChange={e => this.updateImpact(e.target.value)} required></textarea>
+                                <input type='text' name="impact" row="15" placeholder="Quitting my addiction will improve my life by:" onChange={e => this.updateImpact(e.target.value)} required></input>
                                 <ValidationError hasError={!this.state.impactValid} message={this.state.validationMessages.impact}/>  
                             </div>
                             <div>

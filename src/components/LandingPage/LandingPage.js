@@ -9,7 +9,7 @@ function LandingPage(props) {
             <main role="main">
                 {props.isShowing ? <SignUpForm className='modal' handleSubmit={props.handleUserSubmit} show={props.isShowing} close={props.closeModalHandler}></SignUpForm> : null}
                 <header role="banner">
-                    <h1>SoberFriends</h1>
+                    <h1 className='main-heading'>SoberFriends</h1>
                     <h2>One Community One Mission</h2>
                 </header>
                 <section>

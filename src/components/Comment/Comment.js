@@ -47,6 +47,8 @@ function Comment(props) {
 
     const { comments, isLoading } = commentsRequest;
 
+    console.log(comments)
+
     return (
         <>
         {isLoading ? <Loader {...props} /> : (
@@ -63,7 +65,7 @@ function Comment(props) {
                             {comments.map(comment => {
                                 return (
                                     <div key={comment.id}>
-                                        <p>{comment.first_name} {comment.last_name} {comment.comment} {moment(comment.date_commented).format('MM.DD.YY hh:mm a')}</p>
+                                        <p>{comment.first_name} - {comment.comment} - {moment(comment.date_commented).format('MM.DD.YY')}</p>
                                     </div>
                                 )
                             })}

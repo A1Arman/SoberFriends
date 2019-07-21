@@ -9,7 +9,6 @@ function LandingNav(props) {
             <ul>
                 <li className='title'><Link to='/'>SoberFriends</Link></li>
                 <li id='signup' onClick={props.openModalHandler}>Sign Up</li>
-                {TokenService.hasAuthToken() ? <li><Link to='/posts'>Posts</Link></li> : <li><Link to='/login'>Posts</Link></li>}
             </ul>
         </nav>
     )

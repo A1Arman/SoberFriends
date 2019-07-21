@@ -75,10 +75,9 @@ function Profile(props) {
                         <section>
                             <header>
                                 <h3>{user.first_name} {user.last_name}</h3>
-                                <p>{moment(user.start_date).format("MM-DD-YYYY")}</p>
+                                <p>Date Started: {moment(user.start_date).format("MM-DD-YYYY")}</p>
                                 <p>Days Sober: {currentDate.diff(moment(user.start_date), 'days')}</p>
                                 <h4>Money Saved: ${currentDate.diff(moment(user.start_date), 'days') * user.money_spent}</h4>
-                                <h4>How your life will improve once you beat your addiction!</h4>
                                 <p>{user.impact}</p>
                                 <button onClick={props.openModalDeleteHandler}>Delete Account</button>
                             </header>

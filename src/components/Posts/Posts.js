@@ -3,6 +3,7 @@ import config from '../../config';
 import TokenService from '../../services/token-service';
 import Comment from '../Comment/Comment';
 import Loader from '../Loader/Loader';
+import Likes from '../Likes/Likes';
 
 const {API_BASE_URL} = config;
 
@@ -17,7 +18,6 @@ function useMergeState(initialState) {
 function Posts(props) {
     const [postsRequest, setPosts] = useMergeState({
         posts: [],
-        user: null,
         isLoading: true,
     });
 
@@ -31,12 +31,9 @@ function Posts(props) {
         }
         try {
             const postResponse = await fetch(`${API_BASE_URL}/posts`, options);
-            const userResponse = await fetch(`${API_BASE_URL}/users/user`, options);
             const postData = await postResponse.json();
-            const userData = await userResponse.json();
             setPosts({
                 posts: postData,
-                user: userData,
                 isLoading: false
             })
         } catch (err) {
@@ -48,7 +45,7 @@ function Posts(props) {
         fetchPosts();
     }, []);
 
-    const { posts, user, isLoading } = postsRequest; 
+    const { posts,  isLoading } = postsRequest; 
 
     return (
         <>
@@ -60,15 +57,18 @@ function Posts(props) {
                         <h1>Posts</h1>
                     </header>
                     {props.isShowing ? <Comment className='modal' postId={props.postId} postTitle={props.postTitle} handleSubmit={props.handleCommentSubmit} show={props.isShowing} close={props.closeModalHandler} /> : null}
+                    {props.likeError ? <p>{props.likeError.error}</p> : null}
                     {posts.map(post => {
                         return (
                             <section className='card' key={post.id}>
                                 <header>
                                     <h3>{post.post_title}</h3>
-                                    <p>{user.first_name} {user.last_name}</p>
+                                    <p>{post.first_name} {post.last_name}</p>
+                                    <Likes postId={post.id} />
                                 </header>
                                 <p>{post.post_content}</p>
                                 <button onClick={() => props.openModalHandler(post.id, post.post_title)}>Comments</button>
+                                <button onClick={() => props.handleLike(post.id)}>Like</button>
                             </section>
                         )
                     })}
