@@ -16,7 +16,7 @@
 
 
 .modal-header {
-    background: #263238;
+    background: #5295BF;
     line-height: 4rem;
     padding: 0.25rem;
 }
@@ -36,7 +36,7 @@
 }
 
 .modal-footer {
-    background: #263238;
+    background: #5295BF;
     height: 35px;
     padding: 10px;
 }
@@ -67,7 +67,6 @@
 }
 
 .btn-cancel, .btn-continue {
-    background: coral;
     border: none;
     color: white;
     cursor: pointer;
@@ -78,12 +77,12 @@
 }
 
 .btn-cancel {
-    background-color: #b71c1c;
+    background-color: #265573;
     float: left;
 }
 
 .btn-continue {
-    background-color: #1b5e20;
+    background-color: #265573;
     float: right;
 }
 

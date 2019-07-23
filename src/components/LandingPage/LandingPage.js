@@ -19,7 +19,7 @@ function LandingPage(props) {
                 </header>
                 <section>
                     <header>
-                        <h3>The Mission</h3>
+                        <h3 className='mission-header'>The Mission</h3>
                     </header>
                     <p>SoberFriends helps you quit your addiction by allowing you to connect with other people in your situation. This allows you to be held accountable by your peers. Knowing that someone else is going through what you are and working on it together is an amazing feeling. Not only this, but it gives you a sense of commitment to staying off your addiction.</p>
                 </section>

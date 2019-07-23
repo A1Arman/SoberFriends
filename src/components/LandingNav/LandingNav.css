@@ -7,11 +7,11 @@ ul {
 li, li a{
     text-decoration: none;
     padding-right: 1rem;
-    color: #66B9Bf;
+    color: #265573;
 }
 
 li:hover, li a:hover {
-    color: #07889B;
+    color: #BF7A19;
 }
 
 .title {
