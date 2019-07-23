@@ -157,7 +157,7 @@ class App extends Component {
         if (likes) {
           this.setState({likeError: likes})
         }
-        window.location.href = '/posts'
+        window.location.reload(true);
       })
       .catch(error => {
         this.setState({likeError: error})

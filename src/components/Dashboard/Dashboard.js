@@ -5,6 +5,7 @@ import config from '../../config';
 import Likes from '../Likes/Likes';
 import Loader from '../Loader/Loader';
 import Comment from '../Comment/Comment';
+import LikeButton from '../LikeButton/LikeButton';
 import './Dashboard.css';
 
 const { API_BASE_URL } = config;
@@ -81,7 +82,7 @@ function Dashboard(props) {
                             <Likes postId={post.id} />
                             <p>{post.post_content}</p>
                             <button onClick={() => props.openModalHandler(post.id, post.post_title)}>Comments</button>
-                            <button onClick={() => props.handleLike(post.id)}>Like</button>
+                            <LikeButton handleLike={(postId) => props.handleLike(postId)} postId={post.id}/>
                         </section>
                     </main>
                 </>
