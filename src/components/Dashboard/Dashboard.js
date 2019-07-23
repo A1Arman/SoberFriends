@@ -5,8 +5,10 @@ import config from '../../config';
 import Likes from '../Likes/Likes';
 import Loader from '../Loader/Loader';
 import Comment from '../Comment/Comment';
+import './Dashboard.css';
 
 const { API_BASE_URL } = config;
+
 
 function useMergeState(initialState) {
     const [state, setState] = useState(initialState);
@@ -64,7 +66,7 @@ function Dashboard(props) {
             {isLoading ? <Loader {...props} /> : (
                 <>
                     <header>
-                        <h1>Dashboard</h1>
+                        <h1 className='dash-header'>Dashboard</h1>
                     </header>
                     <main>
                         <h2>Welcome Back {user.first_name}</h2>

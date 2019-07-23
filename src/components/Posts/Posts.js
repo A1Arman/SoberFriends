@@ -4,6 +4,7 @@ import TokenService from '../../services/token-service';
 import Comment from '../Comment/Comment';
 import Loader from '../Loader/Loader';
 import Likes from '../Likes/Likes';
+import LikeButton from '../LikeButton/LikeButton';
 
 const {API_BASE_URL} = config;
 
@@ -68,7 +69,7 @@ function Posts(props) {
                                 </header>
                                 <p>{post.post_content}</p>
                                 <button onClick={() => props.openModalHandler(post.id, post.post_title)}>Comments</button>
-                                <button onClick={() => props.handleLike(post.id)}>Like</button>
+                                <LikeButton handleLike={(postId) => props.handleLike(postId)} postId={post.id}/>
                             </section>
                         )
                     })}

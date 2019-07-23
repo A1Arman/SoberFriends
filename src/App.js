@@ -8,6 +8,7 @@ import Profile from './components/Profile/Profile';
 import AddPost from './components/AddPost/AddPost';
 import Footer from './components/Footer/Footer';
 import LoginForm from './components/LoginForm/LoginForm';
+import LoginNav from './components/LoginNav/LoginNav';
 import AuthApiService from './services/auth-api-service';
 import TokenService from './services/token-service';
 import config from './config';
@@ -164,6 +165,7 @@ class App extends Component {
   }
 
   handleLogin = e => {
+    this.setState({isLoading: true})
     e.preventDefault();
     const { email, password } = e.target
     AuthApiService.postLogin({
@@ -181,7 +183,10 @@ class App extends Component {
         email.value = ''
         password.value = ''
         TokenService.saveAuthToken(user.authToken);
-        this.setState({loggedIn: true});
+        this.setState({
+          loggedIn: true,
+          isLoading: false,
+        });
         window.location.href = '/dashboard'
       })
       .catch(err => {
@@ -329,12 +334,12 @@ class App extends Component {
     return (
       <div className='App'>
         <header>
-          <Route exact path='/' render={(props) => <LandingNav {...props} openModalHandler={this.openModalHandler} isShowing={this.state.isShowing} closeModalHandler={this.closeModalHandler}/>} />
+          <Route exact path='/' render={(props) => <LandingNav {...props} openModalHandler={this.openModalHandler} logOut={this.handleLogOut} isShowing={this.state.isShowing} closeModalHandler={this.closeModalHandler}/>} />
           <Route exact path='/posts' render={(props) => <AppNav {...props} handleLogout={this.handleLogOut} />} />
           <Route exact path='/profile' render={(props) => <AppNav {...props} handleLogout={this.handleLogOut} />} />
           <Route exact path='/addPost' render={(props) => <AppNav {...props} handleLogout={this.handleLogOut} />} />
           <Route exact path='/dashboard' render={(props) => <AppNav {...props} handleLogout={this.handleLogOut} />} />
-          <Route exact path='/login' component={LandingNav} />
+          <Route exact path='/login' render={(props) => <LoginNav {...props} openModalHandler={this.openModalHandler}/>} />
         </header>
         <>
           <Route exact path='/' render={(props) => 
@@ -347,7 +352,7 @@ class App extends Component {
           <Route exact path='/addPost' render={(props) => 
               <AddPost {...props} contentValid={this.state.postContentValid} handleValidation={this.validate} handleSubmit={(event) => this.handleSubmit(event)} />}/>
           <Route exact path='/login' render={(props) => 
-              <LoginForm {...props} logInError={this.state.logInError} handleLogin={(event) => this.handleLogin(event)} />} />
+              <LoginForm {...props} closeModalHandler={this.closeModalHandler} isShowing={this.state.isShowing} logInError={this.state.logInError} handleLogin={(event) => this.handleLogin(event)} />} />
           <Route exact path='/dashboard' render={(props) => 
               <Dashboard {...props} postId={this.state.postId} isShowing={this.state.isShowing} openModalHandler={(id, title) => this.openModalHandler(id, title)} handleLike={postId => this.handleLikeClick(postId)} closeModalHandler={this.closeModalHandler} handleCommentSubmit={(event) => this.handleCommentSubmit(event)}/>}/>
         </>

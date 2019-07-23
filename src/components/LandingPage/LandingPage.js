@@ -8,9 +8,14 @@ function LandingPage(props) {
             { props.isShowing ? <div onClick={props.closeModalHandler} className="back-drop"></div> : null }
             <main role="main">
                 {props.isShowing ? <SignUpForm className='modal' handleSubmit={props.handleUserSubmit} show={props.isShowing} close={props.closeModalHandler}></SignUpForm> : null}
-                <header role="banner">
-                    <h1 className='main-heading'>SoberFriends</h1>
-                    <h2>One Community One Mission</h2>
+                <header className="main-header-container" role="banner">
+                        <svg className="pulse" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink">
+                            <circle id="Oval" cx="512" cy="512" r="512"></circle>
+                            <circle id="Oval" cx="512" cy="512" r="512"></circle>
+                            <circle id="Oval" cx="512" cy="512" r="512"></circle>
+                        </svg>
+                        <h1 className='main-heading'>SoberFriends</h1>
+                        <h2 className='tagline'>One Community One Mission</h2>
                 </header>
                 <section>
                     <header>

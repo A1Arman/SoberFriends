@@ -4,20 +4,40 @@ ul {
     justify-content: flex-end;
 }
 
-li a {
+li, li a{
     text-decoration: none;
     padding-right: 1rem;
+    color: #66B9Bf;
+}
+
+li:hover, li a:hover {
+    color: #07889B;
 }
 
 .title {
     margin-right: auto;
 }
 
-#signup {
+.signup-nav {
     padding-right: 1rem;
 }
 
-#signup:hover {
+
+.signup-nav:hover {
     cursor: pointer;
-    color: purple;
+    animation: wiggle 200ms infinite alternate;
+}
+
+@keyframes wiggle {
+    0% {
+        transform: rotateZ(-5deg);
+    }
+
+    50% {
+        transform: rotateZ(0deg)
+    }
+
+    100% {
+        transform: rotateZ(5deg);
+    }
 }

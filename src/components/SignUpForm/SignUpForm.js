@@ -312,11 +312,11 @@ class SignUpForm extends Component {
                                 <ValidationError hasError={!this.state.impactValid} message={this.state.validationMessages.impact}/>  
                             </div>
                             <div>
-                                <p>Have an Account? <Link to='/login'>Login Here</Link></p>
+                                <p className="login-accnt">Have an Account? <Link to='/login' onClick={this.props.close}>Login Here</Link></p>
                             </div>
                             <div className="modal-footer">
-                                <button className="btn-cancel" onClick={this.props.close}>CLOSE</button>
-                                <button className="btn-continue" type='submit' disabled={!this.state.formValid}>CONTINUE</button>
+                                <button className="btn-cancel" onClick={this.props.close}><span>CLOSE</span></button>
+                                <button className="btn-continue" type='submit' disabled={!this.state.formValid}><span>CONTINUE</span></button>
                             </div>
                         </form>
                     </div>

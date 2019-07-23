@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import config from '../../config';
 import moment from 'moment';
-import Loader from '../Loader/Loader';
 import TokenService from '../../services/token-service';
 import './Comment.css';
 
@@ -47,11 +46,10 @@ function Comment(props) {
 
     const { comments, isLoading } = commentsRequest;
 
-    console.log(comments)
 
     return (
         <>
-        {isLoading ? <Loader {...props} /> : (
+        {isLoading ? null : (
             <div className='modal-wrapper'
                     style={{
                         transform: props.show ? 'translateY(0vh)' : 'translateY(-100vh)',

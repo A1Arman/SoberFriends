@@ -1,0 +1,8 @@
+.footer-item {
+    text-decoration: none;
+    color: #66B9Bf;
+}
+
+.footer-item:hover {
+    color: #07889B;
+}

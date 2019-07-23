@@ -1,0 +1,40 @@
+.btn-login span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+  
+.btn-login span::after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+}
+  
+.btn-login:hover span {
+    padding-right: 25px;
+}
+  
+.btn-login:hover span::after {
+    opacity: 1;
+    right: 0;
+}
+
+.btn-login {
+    background-color: #07889B;
+    margin: 1rem;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    outline: none;
+    padding: 1rem;
+    transition: all 0.5s;
+}
+
+label.email, label.password {
+    text-align: left;
+}

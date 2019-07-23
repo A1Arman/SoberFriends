@@ -3,13 +3,17 @@
     border: 0.1rem solid #d0cccc;
     box-shadow: 0 0.5rem 0.8rem 0 rgba(0,0,0,0.2), 0 0.7rem 2rem 0 rgba(0,0,0,0.17);
     margin: 5rem auto 0;
-    transition: all .8s;
+    transition: all .5s;
+    transform: translateY(-3rem);
+    animation: down 250ms linear forwards;
     width: 35rem;
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
 }
+
+
 
 .modal-header {
     background: #263238;
@@ -24,13 +28,42 @@
 }
 
 .modal-body {
+    position: relative;
     padding: 1rem 1.5rem;
+    transform: translateY(6rem);
+    animation: up 250ms linear forwards;
+    z-index: 1;
 }
 
 .modal-footer {
     background: #263238;
     height: 35px;
     padding: 10px;
+}
+
+.btn-cancel span, .btn-continue span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+  
+.btn-cancel span::after, .btn-continue span::after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+}
+  
+.btn-cancel:hover span, .btn-continue:hover span {
+    padding-right: 25px;
+}
+  
+.btn-cancel:hover span::after, .btn-continue:hover span::after {
+    opacity: 1;
+    right: 0;
 }
 
 .btn-cancel, .btn-continue {
@@ -41,6 +74,7 @@
     font-weight: bold;
     outline: none;
     padding: 10px;
+    transition: all 0.5s;
 }
 
 .btn-cancel {
@@ -64,12 +98,17 @@
     margin-bottom: 0.75rem;
 }
 
+.login-accnt {
+    text-align: center;
+}
+
 .back-drop {
     background-color: rgba(0, 0, 0, 0.5);
     height: 100vh;
     width: 100vw;
     position: fixed;
     top: 0;
+    left: 0;
     transition: all 1.3s;
 }
 
@@ -79,14 +118,22 @@
     font-weight: bold;
 }
 
+@keyframes up {
+	100% {
+		transform: translateY(0);
+	}
+}
+
+@keyframes down {
+	0% {
+		transform: translateY(-3);
+    }
+    
+    0% {
+		transform: translateY(0);
+	}
+}
 
 @media only screen and (min-width: 600px) {
-    .modal-body {
-        padding: 10px 15px;
-        display: inline;
-        text-align: center;
-    }
-    input, label, textarea {
-        margin: 0 1rem;
-    }
+
 } 
