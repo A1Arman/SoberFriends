@@ -7,28 +7,68 @@
 
 html {
     font-size: 62.5%;
+    height: 100%;
 }
   
 body {
     text-align: center;
     line-height: 1.5;
     font-size: 2rem;
-    box-sizing: border-box; 
+    box-sizing: border-box;
+}
+
+main {
+    overflow: hidden;
+}
+
+.main-header-container {
+    height: 70vh;
+    margin-top: 1.5rem;
+    background-image: url('../../images/main-image.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.container {
+    display: grid;
+    grid-template-areas: "header"
+                         "main"
+                         "footer";
+    height: 100%;
+}
+
+.landing-main-section {
+    background: rgba(38, 85, 115, 0.959);
+    color: whitesmoke;
+}
+
+main.main-container {
+    grid-row: main;
 }
 
 
-h1, h2, h3, h4 {
+h1, h3, h4 {
     font-family: 'PT SANS', sans-serif;
     color: #265573;
 }
 
-h1.main-heading {
-	display: block;
+h2 {
+    font-family: 'PT SANS', sans-serif;
+}
+
+
+/* h1.main-heading {
     margin-top: 4rem;
     font-size: 5rem;
     line-height: 1;
     color: #265573;
 	text-shadow: 0px 1px 2px rgba(255,255,255,1);
+} */
+
+
+.main-img {
+    width: 100%;
+    height: auto;
 }
 
 .mission-header {
@@ -37,10 +77,15 @@ h1.main-heading {
 
 .nav {
     background-color: #ffffff;
+    display: fixed;
 }
 
-nav,
+header {
+    backface-visibility: hidden;
+}
+
 footer {
+    grid-row: footer;
     padding: 1rem 0;
 }
  
@@ -73,9 +118,6 @@ circle:nth-child(2) {
     animation: pulse 2s 0.75s cubic-bezier(.5,.5,0,1);
 }
 
-.tagline {
-    color: rgba(223, 116, 74, 0.918);
-}
 
 .pulse {
 	z-index: -1;

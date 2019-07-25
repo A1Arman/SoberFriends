@@ -333,6 +333,7 @@ class App extends Component {
   render() {
     return (
       <div className='App'>
+        <span className='container'>
         <header>
           <Route exact path='/' render={(props) => <LandingNav {...props} openModalHandler={this.openModalHandler} logOut={this.handleLogOut} isShowing={this.state.isShowing} closeModalHandler={this.closeModalHandler}/>} />
           <Route exact path='/posts' render={(props) => <AppNav {...props} handleLogout={this.handleLogOut} />} />
@@ -341,7 +342,7 @@ class App extends Component {
           <Route exact path='/dashboard' render={(props) => <AppNav {...props} handleLogout={this.handleLogOut} />} />
           <Route exact path='/login' render={(props) => <LoginNav {...props} openModalHandler={this.openModalHandler}/>} />
         </header>
-        <>
+        <main className='main-container'>
           <Route exact path='/' render={(props) => 
               <LandingPage {...props} closeModalHandler={this.closeModalHandler} isShowing={this.state.isShowing} isLoggedIn={this.state.loggedIn}/>}/>
           <Route exact path='/posts' render={(props) => 
@@ -355,10 +356,11 @@ class App extends Component {
               <LoginForm {...props} closeModalHandler={this.closeModalHandler} isShowing={this.state.isShowing} logInError={this.state.logInError} handleLogin={(event) => this.handleLogin(event)} />} />
           <Route exact path='/dashboard' render={(props) => 
               <Dashboard {...props} postId={this.state.postId} isShowing={this.state.isShowing} openModalHandler={(id, title) => this.openModalHandler(id, title)} handleLike={postId => this.handleLikeClick(postId)} closeModalHandler={this.closeModalHandler} handleCommentSubmit={(event) => this.handleCommentSubmit(event)}/>}/>
-        </>
-        <>
+        </main>
+        <footer>
           <Route exact path='/' component={Footer} />
-        </>
+        </footer>
+        </span>
       </div>
     );
   }

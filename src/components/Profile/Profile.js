@@ -79,7 +79,6 @@ function Profile(props) {
                                 <p>Days Sober: {currentDate.diff(moment(user.start_date), 'days')}</p>
                                 <h4>Money Saved: ${currentDate.diff(moment(user.start_date), 'days') * user.money_spent}</h4>
                                 <p>{user.impact}</p>
-                                <button onClick={props.openModalDeleteHandler}>Delete Account</button>
                             </header>
                         </section>
                     )}
@@ -96,7 +95,8 @@ function Profile(props) {
                                     <button className='updatePostBtn' onClick={() => props.openModalUpdateHandler(post.id)}>Update</button>
                                 </section>
                             )
-                        })} 
+                        })}
+                        <button onClick={props.openModalDeleteHandler}>Delete Account</button> 
                     </section>  
                 </main>
             )}
