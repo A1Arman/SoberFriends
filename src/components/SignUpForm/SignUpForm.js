@@ -14,7 +14,6 @@ class SignUpForm extends Component {
             last_name: '',
             email: '',
             password: '',
-            confirmPassword: '',
             money_spent: '',
             impact: '',
             firstNameValid: false,
@@ -23,13 +22,11 @@ class SignUpForm extends Component {
             passwordValid: false,
             impactValid: false,
             money_spentValid: false,
-            passwordMatch: false,
             validationMessages: {
                 first_name: '',
                 last_name: '',
                 email: '',
                 password: '',
-                confirmPassword: '',
                 money_spent: '',
                 impact: ''
             }
@@ -208,30 +205,9 @@ class SignUpForm extends Component {
         }, this.formValid);
     }
 
-    matchPasswords(fieldValue) {
-        const fieldErrors = {...this.state.validationMessages};
-        let hasError = false;
-
-        const password = this.state.password;
-
-        if(fieldValue !== password) {
-        fieldErrors.repeatPassword = 'Passwords do not match';
-        hasError = true;
-        } else {
-        fieldErrors.repeatPassword = '';
-        hasError = false;
-        }
-
-        this.setState({
-        validationMessages: fieldErrors,
-        passwordMatch: !hasError
-        }, this.formValid );
-
-    }
-
     formValid() {
         this.setState({
-        formValid: this.state.emailValid && this.state.passwordValid && this.state.passwordMatch
+        formValid: this.state.emailValid && this.state.passwordValid 
         })
     }
 
@@ -245,10 +221,6 @@ class SignUpForm extends Component {
 
     updatePassword(password) {
         this.setState({password}, () => {this.validatePassword(password)})
-    }
-
-    updateRepeatPassword(repeatPassword) {
-        this.setState({repeatPassword}, () => {this.matchPasswords(repeatPassword)})
     }
 
     updateEmail(email) {
@@ -295,11 +267,6 @@ class SignUpForm extends Component {
                                 <label htmlFor='password'>Password:</label>
                                 <input type='password' name='password' minLength='8' id='password'  onChange={e => this.updatePassword(e.target.value)} required/>
                                 <ValidationError hasError={!this.state.passwordValid} message={this.state.validationMessages.password}/>
-                            </div>
-                            <div className='grid-container'>
-                                <label htmlFor='confirm'>Confirm Password:</label>
-                                <input type='password' name='confirm' id='confirm' minLength='8' onChange={e => this.updateRepeatPassword(e.target.value)} required/>
-                                <ValidationError hasError={!this.state.passwordMatch} message={this.state.validationMessages.repeatPassword}/>
                             </div>
                             <div className='grid-container'>
                                 <label htmlFor='money_spent'>Money Spent(Daily):</label>
