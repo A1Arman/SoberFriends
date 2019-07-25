@@ -1,3 +1,47 @@
+.login-form {
+    margin-top: 10rem;
+    background:  rgb(191, 122, 25, 0.4);
+    border-radius: 0.5rem;
+    padding: 1rem;
+    font-size: 2rem;
+}
+
+.flex-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-form input:focus {
+    outline: none;
+    border-color: rgb(4, 127, 168);
+}
+
+.login_form label {
+    font-weight: bold;
+}
+
+.login-form label, .login-form input {
+    display: block;
+    text-align: start;
+    margin-top: 0.5rem;
+}
+
+.login-form input {
+    width: 35rem;
+    border: 1px solid #ccc;
+    padding: 0.2rem 0.5rem;
+}
+
+.login-title {
+    color: #265573;
+}
+
+div.grid-container:hover {
+    box-shadow: 0 8px 16px 0 rgba(255, 255, 255, 0.151);
+}
+
 .btn-login span {
     cursor: pointer;
     display: inline-block;
@@ -24,7 +68,7 @@
 }
 
 .btn-login {
-    background-color: #07889B;
+    background-color: #265573;
     margin: 1rem;
     border: none;
     color: white;
@@ -37,4 +81,5 @@
 
 label.email, label.password {
     text-align: left;
+    color: #265573;
 }

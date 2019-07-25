@@ -6,10 +6,10 @@ function LoginForm(props) {
     return (
         <>
         { props.isShowing ? <div onClick={props.closeModalHandler} className="back-drop"></div> : null }
-        <section>
-            <h3>Log In</h3>
+        <section className='flex-container'>
             {props.isShowing ? <SignUpForm className='modal' handleSubmit={props.handleUserSubmit} show={props.isShowing} close={props.closeModalHandler}></SignUpForm> : null}
             <form className='login-form' onSubmit={props.handleLogin}>
+                <h2 className='login-title'>Log In</h2>
                 <div className='grid-container'>
                     <label htmlFor='email' className='email'>Email</label>
                     <input type='email' name='email' id='email' required/>
