@@ -31,7 +31,8 @@
 
 .modal-body {
     position: relative;
-    padding: 0.5rem 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
     transform: translateY(6rem);
     animation: up 250ms linear forwards;
     z-index: 1;
