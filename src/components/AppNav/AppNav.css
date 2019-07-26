@@ -2,6 +2,15 @@
     float: right;
 }
 
+.menu-item {
+    color: #265573;
+    text-decoration: none;
+}
+
+.menu-item:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
 /* Position and sizing of burger button */
 .bm-burger-button {
     position: fixed;

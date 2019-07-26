@@ -11,7 +11,7 @@ function AppNav(props) {
             <Link to='/addPost' className='menu-item'>Create a Post</Link>
             <Link to='/profile' className='menu-item'>Profile</Link>
             <Link to='/posts' className='menu-item'>Posts</Link>
-            <Link to='/' onClick={props.handleLogout}>Log Out</Link>
+            <Link to='/' className='menu-item' onClick={props.handleLogout}>Log Out</Link>
         </Menu>
         </>
     )

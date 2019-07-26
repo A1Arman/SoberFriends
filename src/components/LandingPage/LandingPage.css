@@ -19,7 +19,6 @@ body {
 
 .main-header-container {
     height: 70vh;
-    margin-top: 1.5rem;
     background-image: url('../../images/main-image.jpg');
     background-size: cover;
     background-position: center;
@@ -63,7 +62,7 @@ h2 {
 
 .nav {
     background-color: #ffffff;
-    display: fixed;
+    position: fixed;
 }
 
 footer {
