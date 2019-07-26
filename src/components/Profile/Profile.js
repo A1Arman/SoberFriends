@@ -88,7 +88,7 @@ function Profile(props) {
                         <h3>My Posts</h3>
                         {!myPost ? <h2>Oops Something Went Wrong</h2> : myPost.map(post => {
                             return (
-                                <section key={post.id}>
+                                <section className='card' key={post.id}>
                                     <h4>{post.post_title}</h4>
                                     <p>{post.post_content}</p>
                                     <button className='deletePostBtn' onClick={() => {props.openModalDeletePostHandler(post.id); getUser()}}>Delete</button>
