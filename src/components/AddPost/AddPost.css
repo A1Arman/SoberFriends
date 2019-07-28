@@ -1,9 +1,82 @@
 .grid-container {
     display: grid;
-    grid-template-columns: auto;
+    grid-template-areas: "label ..."
+                         "input input"
+                         "label2 ..."
+                         "textarea textarea";
 }
 
 
 .sub-btn {
     margin-right: 1.5rem;
 }
+
+
+.addPost-label {
+    grid-area: label;
+    text-align: start;
+}
+
+.sub-btn span, .rst-btn span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+  
+.sub-btn span::after, .rst-btn span::after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+}
+  
+.sub-btn:hover span, .rst-btn:hover span {
+    padding-right: 25px;
+}
+  
+.sub-btn:hover span::after, .rst-btn:hover span::after {
+    opacity: 1;
+    right: 0;
+}
+
+.sub-btn, .rst-btn {
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    outline: none;
+    padding: 1rem;
+    transition: all 0.5s;
+}
+
+.sub-btn {
+    background-color: #265573;
+}
+
+.rst-btn {
+    background-color: #265573;
+}
+
+#post_title {
+    width: 100%;
+    height: 3rem;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    grid-area: input;
+}
+
+#post_content {
+    width: 100%;
+    height: 15rem;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    resize: none;
+    margin-bottom: 1rem;
+    grid-area: textarea;
+  }

@@ -50,13 +50,13 @@ function Comment(props) {
     return (
         <>
         {isLoading ? null : (
-            <div className='modal-wrapper'
+            <div className='modal-wrapper comment-modal'
                     style={{
                         transform: props.show ? 'translateY(0vh)' : 'translateY(-100vh)',
                         opacity: props.show ? '1' : '0'
                     }}>
                     <div className='modal-header'>
-                        <h3>{props.postTitle}</h3>
+                        <h3 className='comment-title'>{props.postTitle}</h3>
                     </div>
                     <div className='modal-body'>
                         <header>

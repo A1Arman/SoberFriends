@@ -237,7 +237,7 @@ class App extends Component {
           posts: this.state.posts.filter(post => post.id !== postId),
           isShowingDeletePost: false
         });
-        window.location.href='/posts'
+        window.location.reload(true);
       })
       .catch(error => {
         throw new Error(error);

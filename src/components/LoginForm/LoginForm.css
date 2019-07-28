@@ -1,41 +1,13 @@
-.login-form {
-    margin-top: 10rem;
-    background:  rgb(191, 122, 25, 0.4);
-    border-radius: 0.5rem;
-    padding: 1rem;
-    font-size: 2rem;
+.login-title {
+    color: #265573;
 }
 
 .flex-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    margin: 5rem 5rem;
 }
 
-.login-form input:focus {
-    outline: none;
-    border-color: rgb(4, 127, 168);
-}
-
-.login_form label {
-    font-weight: bold;
-}
-
-.login-form label, .login-form input {
-    display: block;
-    text-align: start;
-    margin-top: 0.5rem;
-}
-
-.login-form input {
-    width: 35rem;
-    border: 1px solid #ccc;
-    padding: 0.2rem 0.5rem;
-}
-
-.login-title {
-    color: #265573;
+.login-grid-container {
+    display: grid;
 }
 
 div.grid-container:hover {
@@ -79,7 +51,23 @@ div.grid-container:hover {
     transition: all 0.5s;
 }
 
+#password, #email {
+    width: 100%;
+    margin-top: 1rem;
+    outline: 0;
+    border: 0;
+    border-bottom: 0.1rem solid #265573;
+}
+
+#password:hover, #email:hover {
+    width: 100%;
+    margin-top: 1rem;
+    cursor: pointer;
+}
+
 label.email, label.password {
     text-align: left;
     color: #265573;
+    font-weight: bold;
+    padding-top: 1rem;
 }
