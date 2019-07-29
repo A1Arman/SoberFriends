@@ -5,6 +5,7 @@ import Comment from '../Comment/Comment';
 import Loader from '../Loader/Loader';
 import Likes from '../Likes/Likes';
 import LikeButton from '../LikeButton/LikeButton';
+import './Post.css';
 
 const {API_BASE_URL} = config;
 
@@ -61,15 +62,17 @@ function Posts(props) {
                     {props.likeError ? <p>{props.likeError.error}</p> : null}
                     {posts.map(post => {
                         return (
-                            <section className='card' key={post.id}>
-                                <header>
-                                    <h3>{post.post_title}</h3>
-                                    <p>{post.first_name} {post.last_name}</p>
+                            <section className='card card-grid-container' key={post.id}>
+                                <header className='card-header-container'>
+                                    <h3 id='post-main-title'>{post.post_title}</h3>
+                                    <h4>{post.first_name} {post.last_name}</h4>
                                     <Likes postId={post.id} />
                                 </header>
-                                <p>{post.post_content}</p>
-                                <button onClick={() => props.openModalHandler(post.id, post.post_title)}>Comments</button>
-                                <LikeButton handleLike={(postId) => props.handleLike(postId)} postId={post.id}/>
+                                <p id='post-content'>{post.post_content}</p>
+                                <div className='btn-grid-container'>
+                                    <button id='comment-btn' className='updatePostBtn' onClick={() => props.openModalHandler(post.id, post.post_title)}>Comments</button>
+                                    <LikeButton id='like-btn' handleUnlike={(postId) => props.handleUnlike(postId)} handleLike={(postId) => props.handleLike(postId)} postId={post.id}/>
+                                </div>
                             </section>
                         )
                     })}

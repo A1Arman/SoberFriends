@@ -2,10 +2,45 @@
     top: 15rem;
 }
 
+.comment-grid-container {
+    display: grid;
+    grid-template-areas: "name comment date";
+    column-gap: 1rem;
+}
+
+
+#comment-name {
+    grid-area: name;
+    margin: 0;
+}
+
+#comment-content {
+    grid-area: comment;
+    margin: 0;
+}
+
+#comment-date {
+    grid-area: date;
+    margin: 0;
+}
+
+#comment-label {
+    margin-top: 1.5rem;
+    font-weight: bold;
+}
+
+#comment {
+    margin: 0.5rem;
+}
+
 .comment-modal {
-    top: 20rem;
+    top: 10rem;
 }
 
 .comment-title {
     color: whitesmoke;
+}
+
+.btn-continue, .btn-cancel {
+    border-radius: 5px;
 }

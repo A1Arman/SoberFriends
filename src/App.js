@@ -194,6 +194,28 @@ class App extends Component {
       })
   }
 
+  handleUnlikeClick = (postId) => {
+    const options = {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `bearer ${TokenService.getAuthToken()}`
+      }
+    }
+
+    fetch(`${API_BASE_URL}/posts/${postId}/likes`, options)
+      .then(res => {
+        if (!res.ok) {
+          return res.json().then(error => {
+            this.setState({error})
+          })
+        }
+      })
+      .then(() => {
+        window.location.reload(true);
+      })
+  }
+
   handleDeleteUser = () => {
     fetch(`${API_BASE_URL}/users/user`, {
       method: "DELETE",
@@ -346,7 +368,7 @@ class App extends Component {
           <Route exact path='/' render={(props) => 
               <LandingPage {...props} closeModalHandler={this.closeModalHandler} isShowing={this.state.isShowing} isLoggedIn={this.state.loggedIn}/>}/>
           <Route exact path='/posts' render={(props) => 
-              <Posts {...props} likeError={this.state.likeError} posts={this.state.posts} handleLike={postId => this.handleLikeClick(postId)} closeModalHandler={this.closeModalHandler} user={this.state.user}  openModalHandler={(id, title) => this.openModalHandler(id, title)} postTitle={this.state.postTitle} postId={this.state.postId} isShowing={this.state.isShowing} handleCommentSubmit={(event) => this.handleCommentSubmit(event)}/>} />
+              <Posts {...props} likeError={this.state.likeError} posts={this.state.posts} handleLike={postId => this.handleLikeClick(postId)} handleUnlike={postId => this.handleUnlikeClick(postId)} closeModalHandler={this.closeModalHandler} user={this.state.user}  openModalHandler={(id, title) => this.openModalHandler(id, title)} postTitle={this.state.postTitle} postId={this.state.postId} isShowing={this.state.isShowing} handleCommentSubmit={(event) => this.handleCommentSubmit(event)}/>} />
           <Route exact path='/profile' render={(props) => 
               <Profile {...props} user={this.state.user} validation={this.validate} handleDeletePost={(postId) => this.handleDeletePost(postId)} deleteAccount={this.handleDeleteUser} postId={this.state.postId} closeModalUpdateHandler={this.closeModalUpdateHandler} isShowingDelete={this.state.isShowingDelete} openModalDeleteHandler={this.openModalDeleteHandler} closeModalDeleteHandler={this.closeModalDeleteHandler} 
                 openModalUpdateHandler={(postId) => this.openModalUpdateHandler(postId)} openModalDeletePostHandler={(postId) => this.openModalDeletePostHandler(postId)} closeModalDeletePostHandler={this.closeModalDeletePostHandler} isShowingDeletePost={this.state.isShowingDeletePost} isShowingUpdate={this.state.isShowingUpdate} handleUpdateSubmit={(event) => this.handleUpdateSubmit(event, this.state.postId)}/>}/>
@@ -355,7 +377,7 @@ class App extends Component {
           <Route exact path='/login' render={(props) => 
               <LoginForm {...props} closeModalHandler={this.closeModalHandler} isShowing={this.state.isShowing} logInError={this.state.logInError} handleLogin={(event) => this.handleLogin(event)} />} />
           <Route exact path='/dashboard' render={(props) => 
-              <Dashboard {...props} postId={this.state.postId} isShowing={this.state.isShowing} openModalHandler={(id, title) => this.openModalHandler(id, title)} handleLike={postId => this.handleLikeClick(postId)} closeModalHandler={this.closeModalHandler} handleCommentSubmit={(event) => this.handleCommentSubmit(event)}/>}/>
+              <Dashboard {...props} postId={this.state.postId} isShowing={this.state.isShowing} openModalHandler={(id, title) => this.openModalHandler(id, title)} handleLike={postId => this.handleLikeClick(postId)} handleUnlike={postId => this.handleUnlikeClick(postId)} closeModalHandler={this.closeModalHandler} handleCommentSubmit={(event) => this.handleCommentSubmit(event)}/>}/>
         </main>
         <footer>
           <Route exact path='/' component={Footer} />

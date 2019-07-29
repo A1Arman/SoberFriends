@@ -6,6 +6,7 @@ import config from '../../config';
 import UpdateMyPost from '../UpdateMyPost/UpdateMyPost';
 import DeleteMyAccount from '../DeleteMyAccount/DeleteMyAccount';
 import DeleteMyPost from '../DeleteMyPost/DeleteMyPost';
+import './Profile.css';
 
 const {API_BASE_URL} = config;
 
@@ -74,11 +75,8 @@ function Profile(props) {
                     {!user ? <h2>Oops Something Went Wrong</h2>: (
                         <section>
                             <header>
-                                <h3>{user.first_name} {user.last_name}</h3>
+                                <h2 id='profile-name'>{user.first_name} {user.last_name}</h2>
                                 <p>Date Started: {moment(user.start_date).format("MM-DD-YYYY")}</p>
-                                <p>Days Sober: {currentDate.diff(moment(user.start_date), 'days')}</p>
-                                <h4>Money Saved: ${currentDate.diff(moment(user.start_date), 'days') * user.money_spent}</h4>
-                                <p>{user.impact}</p>
                             </header>
                         </section>
                     )}
@@ -90,13 +88,13 @@ function Profile(props) {
                             return (
                                 <section className='card' key={post.id}>
                                     <h4>{post.post_title}</h4>
-                                    <p>{post.post_content}</p>
+                                    <p className='post-content'>{post.post_content}</p>
                                     <button className='deletePostBtn' onClick={() => {props.openModalDeletePostHandler(post.id); getUser()}}>Delete</button>
                                     <button className='updatePostBtn' onClick={() => props.openModalUpdateHandler(post.id)}>Update</button>
                                 </section>
                             )
                         })}
-                        <button onClick={props.openModalDeleteHandler}>Delete Account</button> 
+                        <button className='deletePostBtn' onClick={props.openModalDeleteHandler}>Delete Account</button> 
                     </section>  
                 </main>
             )}

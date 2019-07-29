@@ -1,4 +1,4 @@
-.grid-container {
+.addPost-grid-container {
     display: grid;
     grid-template-areas: "label ..."
                          "input input"
@@ -15,6 +15,10 @@
 .addPost-label {
     grid-area: label;
     text-align: start;
+    margin: 1rem 0;
+    color: #265573;
+    font-weight: bold;
+    font-size: 1.75rem;
 }
 
 .sub-btn span, .rst-btn span {

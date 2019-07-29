@@ -7,13 +7,13 @@ function AddPost(props) {
             <header>
                 <h1>New Post</h1>
             </header>
-            <section>
+            <section id='addPost-form-container'>
                 <form id="add-post-form" onSubmit={props.handleSubmit}>
-                <div className="form-section grid-container">
+                <div className="form-section addPost-grid-container">
                     <label className='addPost-label' htmlFor="post_title">Post title</label>
                     <input type="text" name="post_title" id="post_title" placeholder="Feeling Unstoppable" required />
                 </div>
-                <div className="form-section grid-container">
+                <div className="form-section addPost-grid-container">
                     <label className='addPost-label' htmlFor="post_content">Post Content<br/>
                         (Tell us about your current journey, how you are feeling, or just any tips you might have!)</label>
                     <textarea name="post_content" rows="10" id="post_content" required></textarea>

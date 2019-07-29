@@ -4,6 +4,7 @@ ul {
     justify-content: flex-end;
     margin-block-end: 0;
     padding-block-end: 1em;
+    padding-inline-start: 1em;
 }
 
 li, li a{

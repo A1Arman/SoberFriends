@@ -47,6 +47,11 @@ h1, h3, h4 {
     color: #265573;
 }
 
+h1 {
+    font-size: 6rem;
+    animation: moveInRight 2s;
+}
+
 h2 {
     font-family: 'PT SANS', sans-serif;
 }
@@ -72,8 +77,8 @@ footer {
  
 section {
     font-size: 1.75rem;
-    min-height: 20rem;
-    padding: 3rem 1.5rem;
+    min-height: 5rem;
+    padding: 2rem 1rem;
 }
   
   
@@ -127,4 +132,20 @@ circle:nth-child(2) {
 		transform: scale(1);
 	}
 	
+}
+
+@keyframes moveInRight {
+    0% {
+        opacity: 0;
+        transform: translateX(100px);
+    }
+
+    80% {
+        transform: translateX(-10px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate(0);
+    }
 }

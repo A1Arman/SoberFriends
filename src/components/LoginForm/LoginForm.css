@@ -51,7 +51,7 @@ div.grid-container:hover {
     transition: all 0.5s;
 }
 
-#password, #email {
+#login-password, #login-email {
     width: 100%;
     margin-top: 1rem;
     outline: 0;
@@ -59,7 +59,7 @@ div.grid-container:hover {
     border-bottom: 0.1rem solid #265573;
 }
 
-#password:hover, #email:hover {
+#login-password:hover, #login-email:hover {
     width: 100%;
     margin-top: 1rem;
     cursor: pointer;

@@ -62,8 +62,10 @@ function Comment(props) {
                         <header>
                             {comments.map(comment => {
                                 return (
-                                    <div key={comment.id}>
-                                        <p>{comment.first_name} - {comment.comment} - {moment(comment.date_commented).format('MM.DD.YY')}</p>
+                                    <div key={comment.id} className='comment-grid-container'>
+                                        <p id='comment-name'>{comment.first_name}</p>
+                                        <p id='comment-content'>{comment.comment}</p>
+                                        <p id='comment-date'>{moment(comment.date_commented).format('MM.DD.YY')}</p>
                                     </div>
                                 )
                             })}
@@ -71,12 +73,12 @@ function Comment(props) {
                         <main>
                             <form className='comment-form' id='comment-form' onSubmit={props.handleSubmit}>
                                 <div className='grid-container'>
-                                    <label htmlFor='comment'>Comment</label>
+                                    <label htmlFor='comment' id='comment-label'>Comment</label>
                                     <input placeholder='Show your support!' type='text' name='comment' id='comment' required/>
                                 </div>
                                 <div className="modal-footer">
-                                    <button className="btn-cancel" onClick={props.close}>CLOSE</button>
-                                    <button className="btn-continue" type='submit'>CONTINUE</button>
+                                    <button className="btn-cancel" onClick={props.close}><span>CLOSE</span></button>
+                                    <button className="btn-continue" type='submit'><span>CONTINUE</span></button>
                                 </div>
                             </form>
                         </main>

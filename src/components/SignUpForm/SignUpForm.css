@@ -13,7 +13,9 @@
     right: 0;
 }
 
-
+.grid-container {
+    display: grid;
+}
 
 .modal-header {
     background: #5295BF;

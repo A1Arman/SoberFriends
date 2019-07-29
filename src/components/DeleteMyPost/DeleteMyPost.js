@@ -1,16 +1,17 @@
 import React from 'react';
+import './DeleteMyPost.css';
 
 function DeleteMyPost(props) {
     const post = props.posts.filter(post => post.id === props.postId)
     return (
         <>
-        <div className='modal-wrapper'
+        <div className='modal-wrapper deletePost'
                 style={{
                     transform: props.show ? 'translateY(0vh)' : 'translateY(-100vh)',
                     opacity: props.show ? '1' : '0'
                 }}>
                 <div className='modal-header'>
-                    <h3>Delete Post {post[0].post_title}?</h3>
+                    <h3 id='deletePostTitle'>Delete Post "{post[0].post_title}"?</h3>
                 </div>
                 <div className='modal-body'>
                     <p>Post Deletions Cannot be Undone!</p>

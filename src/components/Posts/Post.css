@@ -1,0 +1,27 @@
+.card-grid-container {
+    display: grid;
+    grid-template-areas: "header"
+                         "paragraph"
+                         "footer";   
+}
+
+.card-header-container {
+    grid-area: header;
+    display: grid;
+    grid-template-areas: "name likes"
+                         "title title";
+}
+
+#post-main-title {
+    grid-area: title;
+}
+
+#post-content {
+    grid-area: paragraph;
+    text-align: initial;
+    padding-left: 0.5rem;
+}
+
+#comment-btn, #like-btn {
+    grid-area: footer;
+}

@@ -1,0 +1,57 @@
+.post-content {
+    text-align: initial;
+    margin-bottom: 1rem;
+}
+
+
+.deletePostBtn span, .updatePostBtn span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+  
+.deletePostBtn span::after, .updatePostBtn span::after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+}
+  
+.deletePostBtn:hover span, .updatePostBtn:hover span {
+    padding-right: 25px;
+}
+  
+.deletePostBtn:hover span::after, .updatePostBtn:hover span::after {
+    opacity: 1;
+    right: 0;
+}
+
+.deletePostBtn, .updatePostBtn {
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    outline: none;
+    padding: 1rem;
+    transition: all 0.5s;
+}
+
+.deletePostBtn {
+    background-color: #265573;
+    margin: 1rem 2rem 0 2rem;
+    border-radius: 0.5rem;
+}
+
+.updatePostBtn {
+    background-color: #265573;
+    margin: 1rem 2rem 0 2rem;
+    border-radius: 0.5rem;
+}
+
+#profile-name {
+    color: #265573;
+    font-size: 2.5rem;
+}

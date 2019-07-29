@@ -12,11 +12,11 @@ function LoginForm(props) {
                 <h2 className='login-title'>Log In</h2>
                 <div className='login-grid-container'>
                     <label htmlFor='email' className='email'>Email</label>
-                    <input type='email' name='email' id='email' placeholder='Email Address' required/>
+                    <input type='email' name='email' id='login-email' placeholder='Email Address' required/>
                 </div>
                 <div className='login-grid-container'>
                     <label htmlFor='password' className='password'>Password</label>
-                    <input type='password' name='password' id='password' placeholder='Password' required/>
+                    <input type='password' name='password' id='login-password' placeholder='Password' required/>
                 </div>
                 <button className="btn-login" type='submit'><span>CONTINUE</span></button>
                 {props.logInError ? <p>Incorrect Email or Password</p> : null}

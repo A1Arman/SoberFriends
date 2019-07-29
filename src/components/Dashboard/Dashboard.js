@@ -75,21 +75,21 @@ function Dashboard(props) {
                             <circle id="Oval" cx="512" cy="512" r="512"></circle>
                             <circle id="Oval" cx="512" cy="512" r="512"></circle>
                         </svg>
-                        <h2>Welcome Back {user.first_name}</h2>
+                        <h2 id='greeting-title'>Welcome Back {user.first_name}</h2>
                         <h3>Days Sober: {currentDate.diff(moment(user.start_date), 'days')}</h3>
                         <progress className="progress is-medium" value={currentDate.diff(moment(user.start_date), 'days')} max="100"></progress>
                         <h3>Money Saved: ${currentDate.diff(moment(user.start_date), 'days') * user.money_spent}</h3>
                         <progress className="progress is-medium" value={currentDate.diff(moment(user.start_date), 'days') * user.money_spent} max="1000"></progress>
-                        <h4>Quitting your addiction will impact your life by:</h4> 
+                            <h4 id='impact-title'>Quitting your addiction will impact your life by:</h4> 
                         <p>{user.impact}</p>
+                        <h3>Featured Post</h3>
                         <section className='card'>
-                            <h3>Featured Post</h3>
                             <h4>{post.post_title}</h4>
                             <p>{post.first_name} {post.last_name}</p>
                             <Likes postId={post.id} />
                             <p>{post.post_content}</p>
-                            <button onClick={() => props.openModalHandler(post.id, post.post_title)}>Comments</button>
-                            <LikeButton handleLike={(postId) => props.handleLike(postId)} postId={post.id}/>
+                            <button className='deletePostBtn' onClick={() => props.openModalHandler(post.id, post.post_title)}>Comments</button>
+                            <LikeButton handleUnlike={(postId) => props.handleUnlike(postId)} handleLike={(postId) => props.handleLike(postId)} postId={post.id}/>
                         </section>
                     </main>
                 </>

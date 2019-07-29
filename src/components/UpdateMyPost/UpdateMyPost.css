@@ -1,0 +1,54 @@
+.updatePostModal {
+    top: 7.5rem;
+}
+
+
+.btn-cancel span, .btn-continue span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+  
+.btn-cancel span::after, .btn-continue span::after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+}
+  
+.btn-cancel:hover span, .btn-continue:hover span {
+    padding-right: 25px;
+}
+  
+.btn-cancel:hover span::after, .btn-continue:hover span::after {
+    opacity: 1;
+    right: 0;
+}
+
+.btn-cancel, .btn-continue {
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    outline: none;
+    padding: 1rem;
+    transition: all 0.5s;
+}
+
+.btn-cancel {
+    background-color: #265573;
+    float: left;
+}
+
+.btn-continue {
+    background-color: #265573;
+    float: right;
+}
+
+
+#updatePost-title {
+    color: white;
+}

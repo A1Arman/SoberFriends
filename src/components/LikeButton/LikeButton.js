@@ -57,8 +57,8 @@ function LikeButton(props) {
         {isLoading ? <Loader /> 
             :  <>  
                 {likes.findIndex(like => like.post_id === props.postId && like.owner === user.id) === -1
-                ? <button onClick={() => props.handleLike(props.postId)}>Like</button> 
-                : <button disabled>Liked</button>}
+                ? <button className='deletePostBtn' onClick={() => props.handleLike(props.postId)}>Like</button> 
+                : <button className='deletePostBtn' onClick={() => props.handleUnlike(props.postId)}>Unlike</button>}
             </> 
         }
         </>
