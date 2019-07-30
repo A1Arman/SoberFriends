@@ -70,26 +70,36 @@ function Dashboard(props) {
                         <h1 className='dash-header'>Dashboard</h1>
                     </header>
                     <main>
-                        <svg className="pulse" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink">
-                            <circle id="Oval" cx="512" cy="512" r="512"></circle>
-                            <circle id="Oval" cx="512" cy="512" r="512"></circle>
-                            <circle id="Oval" cx="512" cy="512" r="512"></circle>
-                        </svg>
-                        <h2 id='greeting-title'>Welcome Back {user.first_name}</h2>
-                        <h3>Days Sober: {currentDate.diff(moment(user.start_date), 'days')}</h3>
-                        <progress className="progress is-medium" value={currentDate.diff(moment(user.start_date), 'days')} max="100"></progress>
-                        <h3>Money Saved: ${currentDate.diff(moment(user.start_date), 'days') * user.money_spent}</h3>
-                        <progress className="progress is-medium" value={currentDate.diff(moment(user.start_date), 'days') * user.money_spent} max="1000"></progress>
+                        <section className='dash-header-container'>
+                            <svg className="pulse" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink">
+                                <circle id="Oval" cx="512" cy="512" r="512"></circle>
+                                <circle id="Oval" cx="512" cy="512" r="512"></circle>
+                                <circle id="Oval" cx="512" cy="512" r="512"></circle>
+                            </svg>
+                            <h2 id='greeting-title'>Welcome Back {user.first_name}</h2>
+                            <h3>Days Sober: {currentDate.diff(moment(user.start_date), 'days')}</h3>
+                            <progress id='progress2' className="progress is-medium" value={currentDate.diff(moment(user.start_date), 'days')} max="100"></progress>
+                            <h3>Money Saved: ${currentDate.diff(moment(user.start_date), 'days') * user.money_spent}</h3>
+                            <progress id='progress3' className="progress is-medium" value={currentDate.diff(moment(user.start_date), 'days') * user.money_spent} max="1000"></progress>
+                        </section>
+                        <section id='impact-section'>    
                             <h4 id='impact-title'>Quitting your addiction will impact your life by:</h4> 
-                        <p>{user.impact}</p>
-                        <h3>Featured Post</h3>
-                        <section className='card'>
-                            <h4>{post.post_title}</h4>
-                            <p>{post.first_name} {post.last_name}</p>
-                            <Likes postId={post.id} />
-                            <p>{post.post_content}</p>
-                            <button className='deletePostBtn' onClick={() => props.openModalHandler(post.id, post.post_title)}>Comments</button>
-                            <LikeButton handleUnlike={(postId) => props.handleUnlike(postId)} handleLike={(postId) => props.handleLike(postId)} postId={post.id}/>
+                            <p id='user-impact'>{user.impact}</p>
+                        </section>
+                        <section id='featured-card-container'>
+                        <h3 id='featured-card-title'>Featured Post</h3>
+                        <section className='card dash-card'>
+                            <header id='dash-card-head'>
+                                <h4 id='dash-card-title'>{post.post_title}</h4>
+                                <h4 id='dash-card-name'>{post.first_name} {post.last_name}</h4>
+                                <Likes id='dash-card-like' postId={post.id} />
+                            </header>
+                            <p id='dash-card-content'>{post.post_content}</p>
+                            <div id='dash-card-btns'>
+                                <button className='deletePostBtn' onClick={() => props.openModalHandler(post.id, post.post_title)}>Comments</button>
+                                <LikeButton handleUnlike={(postId) => props.handleUnlike(postId)} handleLike={(postId) => props.handleLike(postId)} postId={post.id}/>
+                            </div>
+                        </section>
                         </section>
                     </main>
                 </>

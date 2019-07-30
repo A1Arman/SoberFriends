@@ -2,10 +2,79 @@ progress {
     border-radius: 0.5rem;
 }
 
+
+.dash-card {
+    display: grid;
+    grid-template-areas: "header"
+                         "content"
+                         "buttons";
+}
+
+#dash-card-head {
+    grid-area: header;
+    display: grid;
+    grid-template-areas: "name likes"
+                         "title title";
+}
+
+#dash-card-title {
+    grid-area: title;
+}
+
+#dash-card-name {
+    grid-area: name;
+}
+
+#dash-card-likes {
+    grid-area: likes;
+}
+
+#dash-card-content {
+    text-align: initial;
+    padding-left: 0.25rem;
+}
+
 #greeting-title {
     color: #265573;
+    grid-area: title;
+}
+
+#impact-section {
+    background: rgba(82, 149, 191, 0.5);
+    margin: 1rem 3rem;
+    border-radius: 5px;
 }
 
 #impact-title {
     margin: 1rem 1rem;
+}
+
+#user-impact {
+    text-align: initial;
+}
+
+#featured-card-container {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+}
+
+
+@media screen and (min-width: 600px) {
+    .dash-header-container {
+        display: grid;
+        grid-template-areas: "title title"
+                             "title2 title3"
+                             "progress2 progress3";
+        justify-content: center;
+        column-gap: 3.5rem;
+    }
+
+    #progress2 {
+        grid-area: progress2;
+    }
+    
+    #progress3 {
+        grid-area: progress3;
+    }
 }

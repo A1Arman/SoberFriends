@@ -154,3 +154,9 @@ circle:nth-child(2) {
         transform: translate(0);
     }
 }
+
+@media screen and (min-width: 600px) {
+    html {
+        font-size: 75%;
+    }
+}

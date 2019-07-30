@@ -7,21 +7,21 @@ import './LandingCards.css';
 function LandingCards() {
     return (
         <section className='card-container'>
-            <h3>A Better Way To Quitting Your Addiction</h3>
-            <section className='card'>
-                <img src={rating} />
-                <h4>Easy to Use</h4>
-                <p>Track your progress and journey with ease</p>
+            <h3 id='card-container-title'>A Better Way To Quitting Your Addiction</h3>
+            <section id='card1' className='card landing-card'>
+                <img src={rating} alt='Pointer Finger Icon'/>
+                <h4 className='card-title'>Easy to Use</h4>
+                <p className='card-content'>Track your progress and journey with ease</p>
             </section>
-            <section className='card'>
-                <img src={impact} />
-                <h4>Impact Others</h4>
-                <p>Connect and meet people going through the same challenges. Keep each other motivated!</p>
+            <section id='card2' className='card landing-card'>
+                <img src={impact} alt='People Icon' />
+                <h4 className='card-title'>Impact Others</h4>
+                <p className='card-content'>Connect and meet people going through the same challenges. Keep each other motivated!</p>
             </section>
-            <section className='card'>
-                <img src={clock} />
-                <h4>Create a Lasting Change</h4>
-                <p>Create a lasting change by taking daily action while being part of a motivated community.</p>
+            <section id='card3' className='card landing-card'>
+                <img src={clock} alt='Clock Icon'/>
+                <h4 className='card-title'>Create a Lasting Change</h4>
+                <p className='card-content'>Create a lasting change by taking daily action while being part of a motivated community.</p>
             </section>
         </section>
     )

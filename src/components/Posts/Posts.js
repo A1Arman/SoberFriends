@@ -54,8 +54,8 @@ function Posts(props) {
         {isLoading ? <Loader {...props} /> : (
             <>
                 { props.isShowing ? <div onClick={props.closeModalHandler} className="back-drop"></div> : null }
-                <main role="main">
-                    <header role="banner">
+                <section className='post-grid-container' role="main">
+                    <header id='post-grid-header' role="banner">
                         <h1>Posts</h1>
                     </header>
                     {props.isShowing ? <Comment className='modal' postId={props.postId} postTitle={props.postTitle} handleSubmit={props.handleCommentSubmit} show={props.isShowing} close={props.closeModalHandler} /> : null}
@@ -76,7 +76,7 @@ function Posts(props) {
                             </section>
                         )
                     })}
-                </main>
+                </section>
             </>
         )
     }

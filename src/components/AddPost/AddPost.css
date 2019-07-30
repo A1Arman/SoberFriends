@@ -4,6 +4,7 @@
                          "input input"
                          "label2 ..."
                          "textarea textarea";
+    margin: 0 3rem;
 }
 
 
@@ -84,4 +85,11 @@
     resize: none;
     margin-bottom: 1rem;
     grid-area: textarea;
+  }
+
+
+  @media screen and (min-width: 992px) {
+      .addPost-grid-container {
+          margin: 0 10rem;
+      }
   }

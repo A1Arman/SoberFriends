@@ -1,8 +1,15 @@
+.post-grid-container {
+    display: grid;
+    align-items: center;
+    justify-content: center;
+}
+
 .card-grid-container {
     display: grid;
     grid-template-areas: "header"
                          "paragraph"
-                         "footer";   
+                         "footer";
+    max-width: 430px;
 }
 
 .card-header-container {
@@ -24,4 +31,19 @@
 
 #comment-btn, #like-btn {
     grid-area: footer;
+}
+
+@media screen and (min-width: 992px) {
+    .post-grid-container {
+        display: grid;
+        grid-template-areas: "title title"
+                             "card card";
+        grid-template-columns: 450px 450px;
+        align-items: initial;
+        justify-content: center;
+    }
+    
+    #post-grid-header {
+        grid-area: title;
+    }
 }

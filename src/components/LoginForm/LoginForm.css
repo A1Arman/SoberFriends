@@ -49,6 +49,7 @@ div.grid-container:hover {
     outline: none;
     padding: 1rem;
     transition: all 0.5s;
+    border-radius: 5px;
 }
 
 #login-password, #login-email {

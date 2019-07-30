@@ -3,6 +3,17 @@
     margin-bottom: 1rem;
 }
 
+.my-posts {
+    display: grid;
+    align-items: center;
+    justify-content: center;
+}
+
+.deletePostBtn.deleteUser {
+    width: auto;
+    max-width: 150px;
+}
+
 
 .deletePostBtn span, .updatePostBtn span {
     cursor: pointer;
@@ -35,8 +46,9 @@
     cursor: pointer;
     font-weight: bold;
     outline: none;
-    padding: 1rem;
+    padding: 10px;
     transition: all 0.5s;
+    width: 96px;
 }
 
 .deletePostBtn {
@@ -48,10 +60,35 @@
 .updatePostBtn {
     background-color: #265573;
     margin: 1rem 2rem 0 2rem;
-    border-radius: 0.5rem;
+    border-radius: 5px;
 }
 
 #profile-name {
     color: #265573;
     font-size: 2.5rem;
+}
+
+
+@media screen and (min-width: 992px) {
+    .my-posts {
+        display: grid;
+        grid-template-areas: "title title"
+                             "card card"
+                             "button button";
+        grid-template-columns: 450px 450px;
+        align-items: initial;
+        justify-content: center;
+    }
+
+    .card-grid-container {
+        width: 430px;
+    }
+
+    #deleteUser-div {
+        grid-area: button;
+    }
+
+    #prof-myPost-title {
+        grid-area: title;
+    }
 }

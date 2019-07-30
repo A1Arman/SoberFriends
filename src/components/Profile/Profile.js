@@ -59,7 +59,6 @@ function Profile(props) {
 
 
     const {user, myPost, isLoading} = userRequest;
-    let currentDate = moment();
 
     return (
         <>
@@ -76,25 +75,29 @@ function Profile(props) {
                         <section>
                             <header>
                                 <h2 id='profile-name'>{user.first_name} {user.last_name}</h2>
-                                <p>Date Started: {moment(user.start_date).format("MM-DD-YYYY")}</p>
+                                <h3>Date Started: {moment(user.start_date).format("MM-DD-YYYY")}</h3>
                             </header>
                         </section>
                     )}
                     {props.isShowingDelete ? <DeleteMyAccount className='modal' handleDelete={props.deleteAccount} show={props.isShowingDelete} close={props.closeModalDeleteHandler}></DeleteMyAccount> : null}
                     {props.isShowingDeletePost ? <DeleteMyPost className='modal' postId={props.postId} handleDelete={props.handleDeletePost} posts={myPost} show={props.isShowingDeletePost} close={props.closeModalDeletePostHandler}></DeleteMyPost> : null}
                     <section className='my-posts'>
-                        <h3>My Posts</h3>
+                        <h3 id='prof-myPost-title'>My Posts</h3>
                         {!myPost ? <h2>Oops Something Went Wrong</h2> : myPost.map(post => {
                             return (
-                                <section className='card' key={post.id}>
+                                <section className='card dash-card' key={post.id}>
                                     <h4>{post.post_title}</h4>
                                     <p className='post-content'>{post.post_content}</p>
-                                    <button className='deletePostBtn' onClick={() => {props.openModalDeletePostHandler(post.id); getUser()}}>Delete</button>
-                                    <button className='updatePostBtn' onClick={() => props.openModalUpdateHandler(post.id)}>Update</button>
+                                    <div>
+                                        <button className='deletePostBtn' onClick={() => {props.openModalDeletePostHandler(post.id); getUser()}}>Delete</button>
+                                        <button className='updatePostBtn' onClick={() => props.openModalUpdateHandler(post.id)}>Update</button>
+                                    </div>
                                 </section>
                             )
                         })}
-                        <button className='deletePostBtn' onClick={props.openModalDeleteHandler}>Delete Account</button> 
+                        <div id='deleteUser-div'>
+                            <button className='deletePostBtn deleteUser' onClick={props.openModalDeleteHandler}>Delete Account</button> 
+                        </div>
                     </section>  
                 </main>
             )}
