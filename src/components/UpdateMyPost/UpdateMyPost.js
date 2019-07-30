@@ -24,8 +24,8 @@ function UpdatePost(props) {
                         <textarea rows='15' type='text' name='post_content' id='post_content' defaultValue={post[0].post_content} required/>
                     </div>
                     <div className="modal-footer">
-                        <button className="btn-cancel" onClick={props.close}>CLOSE</button>
-                        <button className="btn-continue" type='submit' onClick={props.validate}>CONTINUE</button>
+                        <button className="btn-cancel" onClick={props.close}><span>CLOSE</span></button>
+                        <button className="btn-continue" type='submit' onClick={props.validate}><span>CONTINUE</span></button>
                     </div>
                 </form>
             </div>

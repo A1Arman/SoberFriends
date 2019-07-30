@@ -17,8 +17,8 @@ function DeleteMyPost(props) {
                     <p>Post Deletions Cannot be Undone!</p>
                 </div>
                 <div className="modal-footer">
-                    <button className="btn-cancel" onClick={props.close}>CLOSE</button>
-                    <button className="btn-continue" type='button' onClick={props.handleDelete}>CONTINUE</button>
+                    <button className="btn-cancel" onClick={props.close}><span>CLOSE</span></button>
+                    <button className="btn-continue" type='button' onClick={props.handleDelete}><span>CONTINUE</span></button>
                 </div>
             </div>
         </>
