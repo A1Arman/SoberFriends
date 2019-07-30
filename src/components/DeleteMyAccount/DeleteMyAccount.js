@@ -1,4 +1,5 @@
 import React from 'react';
+import './DeleteMyAccount.css';
 
 function DeleteMyAccount(props) {
     return (
@@ -9,7 +10,7 @@ function DeleteMyAccount(props) {
                     opacity: props.show ? '1' : '0'
                 }}>
                 <div className='modal-header'>
-                    <h3>Delete Account?</h3>
+                    <h3 id='delete-account-title'>Delete Account?</h3>
                 </div>
                 <div className='modal-body'>
                     <p>Account Deletions Cannot be Undone!</p>
