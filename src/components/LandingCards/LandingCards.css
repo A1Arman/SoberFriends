@@ -25,7 +25,7 @@ img {
     }
 }
 
-@media screen and (min-width: 950px) {
+@media screen and (min-width: 992px) {
     .card-container {
         display: grid;
         grid-template-areas: ". title ."
@@ -54,7 +54,8 @@ img {
         display: grid;
         grid-template-areas: "img"
                              "title"
-                             "content";                      
+                             "content";
+        justify-content: center;                      
     }
 
     #card-container-title {
@@ -63,17 +64,23 @@ img {
 
     #card1 {
         height: 365px;
+        width: 275px;
         grid-area: card1;
+        margin: 0 auto;
     }
 
     #card2 {
         height: 365px;
+        width: 275px;
         grid-area: card2;
+        margin: 0 auto;
     }
 
     #card3 {
         height: 365px;
+        width: 275px;
         grid-area: card3;
+        margin: 0 auto;
     }
 }
 
