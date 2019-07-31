@@ -4,6 +4,7 @@
 
 .flex-container {
     margin: 5rem 5rem;
+    max-width: 640px;
 }
 
 .login-grid-container {
