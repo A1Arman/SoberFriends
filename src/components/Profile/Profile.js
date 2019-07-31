@@ -95,10 +95,10 @@ function Profile(props) {
                                 </section>
                             )
                         })}
+                    </section>
                         <div id='deleteUser-div'>
                             <button className='deletePostBtn deleteUser' onClick={props.openModalDeleteHandler}>Delete Account</button> 
-                        </div>
-                    </section>  
+                        </div>  
                 </main>
             )}
         </>

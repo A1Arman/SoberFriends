@@ -84,10 +84,6 @@
         width: 430px;
     }
 
-    #deleteUser-div {
-        grid-area: button;
-    }
-
     #prof-myPost-title {
         grid-area: title;
     }
