@@ -19,6 +19,7 @@ function LoginForm(props) {
                     <input type='password' name='password' id='login-password' placeholder='Password' required/>
                 </div>
                 <button className="btn-login" type='submit'><span>CONTINUE</span></button>
+                <p>Login Credentials - Email: Johndoe99@gmail.com - Password: Testing123!</p>
                 {props.logInError ? <p>Incorrect Email or Password</p> : null}
             </form>
         </section>
