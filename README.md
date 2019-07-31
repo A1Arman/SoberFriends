@@ -1,68 +1,64 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# SoberFriends
 
-## Available Scripts
+SoberFriends aims to help people quit their addiction by tracking their progress, and having a community of people going through the same thing for support.
 
-In the project directory, you can run:
+## Motivation
 
-### `npm start`
+I wanted to build an app for people going through quitting their addiction, because I know when you are quitting it can be tough to stay motivated. Also some people may feel like they are alone and have no support. This app aims to solve that by having a community, as well as allowing the user to see their progress by tracking how much money they have saved and how many days they have been stopped their addiction for.
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Demo
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+- [Live Demo]('https://soberfriends.herokuapp.com/')
 
-### `npm test`
+## Screenshots
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Landing Page:
+![Image of SoberFriends Landing Page](https://github.com/A1Arman/SoberFriends/blob/master/src/screenshots/Landing.PNG)
 
-### `npm run build`
+Dashboard:
+![Image of SoberFriends Dashboard](https://github.com/A1Arman/SoberFriends/blob/master/src/screenshots/Dashboard.PNG)
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Create Post:
+![Image of SoberFriends Add Post Page](https://github.com/A1Arman/SoberFriends/blob/master/src/screenshots/Add%20Post.PNG)
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+Post Page:
+![Image of SoberFriends Posts Page](https://github.com/A1Arman/SoberFriends/blob/master/src/screenshots/Posts.PNG)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Profile:
+![Image of SoberFriends Profile Page](https://github.com/A1Arman/SoberFriends/blob/master/src/screenshots/Profile.PNG)
 
-### `npm run eject`
+## Built With
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Front-end
+- React
+- Vanilla JavaScript
+- HTML
+- CSS
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Back-End
+- PostgreSQL
+- Express
+- Node
+- Knex
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### Testing
+- Mocha
+- Chai
+- Jest
+- Enzyme
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### Authentication
+- bcrypt
+- JWTs
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+## Features
+- Create Account
+- Create a Post
+- Comment on Posts
+- See Comments on Posts
+- Like Posts
+- Unlike Posts
+- Track money saved and days off addiction
+- Update Posts
+- Delete Posts 
+- Delete Account
