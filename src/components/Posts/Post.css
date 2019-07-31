@@ -39,10 +39,11 @@
         grid-template-areas: "title title"
                              "card card";
         grid-template-columns: 450px 450px;
+        grid-column-gap: 1.75rem;
         align-items: initial;
         justify-content: center;
     }
-    
+
     #post-grid-header {
         grid-area: title;
     }
