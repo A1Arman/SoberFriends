@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Likes component renders without crashing 1`] = `
+<div>
+  <h4>
+    Likes: 
+    0
+  </h4>
+</div>
+`;

@@ -1,0 +1,70 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LandingCards component renders without crashing 1`] = `
+<section
+  className="card-container"
+>
+  <h3
+    id="card-container-title"
+  >
+    A Better Way To Quitting Your Addiction
+  </h3>
+  <section
+    className="card landing-card"
+    id="card1"
+  >
+    <img
+      alt="Pointer Finger Icon"
+      src="rating.svg"
+    />
+    <h4
+      className="card-title"
+    >
+      Easy to Use
+    </h4>
+    <p
+      className="card-content"
+    >
+      Track your progress and journey with ease
+    </p>
+  </section>
+  <section
+    className="card landing-card"
+    id="card2"
+  >
+    <img
+      alt="People Icon"
+      src="impact.svg"
+    />
+    <h4
+      className="card-title"
+    >
+      Impact Others
+    </h4>
+    <p
+      className="card-content"
+    >
+      Connect and meet people going through the same challenges. Keep each other motivated!
+    </p>
+  </section>
+  <section
+    className="card landing-card"
+    id="card3"
+  >
+    <img
+      alt="Clock Icon"
+      src="clock.svg"
+    />
+    <h4
+      className="card-title"
+    >
+      Create a Lasting Change
+    </h4>
+    <p
+      className="card-content"
+    >
+      Create a lasting change by taking daily action while being part of a motivated community.
+    </p>
+  </section>
+</section>
+`;
