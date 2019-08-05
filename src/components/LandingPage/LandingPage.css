@@ -66,6 +66,10 @@ h2 {
     height: auto;
 }
 
+.tagline {
+    margin-block-start: 0;
+}
+
 .mission-header {
     color: #265573;
 }

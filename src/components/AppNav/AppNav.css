@@ -65,7 +65,7 @@
   /* Wrapper for item list */
   .bm-item-list {
     color: #b8b7ad;
-    padding: 0.8em;
+    padding: 1.5em;
   }
    
   /* Individual item */
@@ -77,3 +77,22 @@
   .bm-overlay {
     background: rgba(0, 0, 0, 0.3);
   }
+
+  #app-icon {
+    font-size: 3.5rem;
+    position: absolute;
+    top: 15px;
+    text-decoration: none;
+    color: #BF7A19;
+  }
+
+  #app-icon:hover {
+    cursor: pointer;
+    animation: wiggle 300ms infinite alternate;
+  }
+
+@media screen and (min-width: 600px) {
+  #app-icon {
+    right: 50px;
+  }
+}

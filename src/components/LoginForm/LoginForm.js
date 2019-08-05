@@ -1,9 +1,12 @@
 import React from 'react';
 import SignUpForm from '../SignUpForm/SignUpForm';
+import Loader from '../Loader/Loader';
 import './LoginForm.css';
 
 function LoginForm(props) {
     return (
+        <>
+        {props.isLoading ? <Loader {...props} /> : (
         <>
         { props.isShowing ? <div onClick={props.closeModalHandler} className="back-drop"></div> : null }
         <section className='flex-container'>
@@ -23,6 +26,8 @@ function LoginForm(props) {
                 {props.logInError ? <p>Incorrect Email or Password</p> : null}
             </form>
         </section>
+        </>
+        )}
         </>
     )
 }

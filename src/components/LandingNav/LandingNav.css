@@ -45,7 +45,7 @@ nav {
 
 @keyframes wiggle {
     0% {
-        transform: rotateZ(-5deg);
+        transform: rotateZ(-2.5deg);
     }
 
     50% {
@@ -53,6 +53,6 @@ nav {
     }
 
     100% {
-        transform: rotateZ(5deg);
+        transform: rotateZ(2.5deg);
     }
 }

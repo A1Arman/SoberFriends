@@ -375,7 +375,7 @@ class App extends Component {
           <Route exact path='/addPost' render={(props) => 
               <AddPost {...props} contentValid={this.state.postContentValid} handleValidation={this.validate} handleSubmit={(event) => this.handleSubmit(event)} />}/>
           <Route exact path='/login' render={(props) => 
-              <LoginForm {...props} closeModalHandler={this.closeModalHandler} isShowing={this.state.isShowing} logInError={this.state.logInError} handleLogin={(event) => this.handleLogin(event)} />} />
+              <LoginForm {...props} closeModalHandler={this.closeModalHandler} isLoading={this.state.isLoading} isShowing={this.state.isShowing} logInError={this.state.logInError} handleLogin={(event) => this.handleLogin(event)} />} />
           <Route exact path='/dashboard' render={(props) => 
               <Dashboard {...props} postId={this.state.postId} isShowing={this.state.isShowing} openModalHandler={(id, title) => this.openModalHandler(id, title)} handleLike={postId => this.handleLikeClick(postId)} handleUnlike={postId => this.handleUnlikeClick(postId)} closeModalHandler={this.closeModalHandler} handleCommentSubmit={(event) => this.handleCommentSubmit(event)}/>}/>
         </main>
